@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -23,9 +24,19 @@ public class AdminBookingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("bookings", bookingService.getAllBookings());
+            // Handle message display
+            HttpSession session = request.getSession();
+            String message = (String) session.getAttribute("message");
+            String messageType = (String) session.getAttribute("messageType");
+            if (message != null && messageType != null) {
+                request.setAttribute("message", message);
+                request.setAttribute("messageType", messageType);
+                session.removeAttribute("message");
+                session.removeAttribute("messageType");
+            }
             request.getRequestDispatcher("/WEB-INF/views/bookings.jsp").forward(request, response);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ServletException("Cannot retrieve bookings", e);
         }
     }
 
@@ -34,15 +45,26 @@ public class AdminBookingServlet extends HttpServlet {
         String action = request.getParameter("action");
         int id = Integer.parseInt(request.getParameter("id"));
 
+        HttpSession session = request.getSession();
+
         try {
             if ("approve".equals(action)) {
                 bookingService.approveBooking(id);  // This sends an approval email
+                session.setAttribute("message", "Booking approved successfully!");
+                session.setAttribute("messageType", "success");
             } else if ("reject".equals(action)) {
                 bookingService.rejectBooking(id);  // This sends a rejection email
+                session.setAttribute("message", "Booking rejected successfully!");
+                session.setAttribute("messageType", "success");
+            } else {
+                session.setAttribute("message", "Unknown action!");
+                session.setAttribute("messageType", "danger");
             }
             response.sendRedirect("main");
         } catch (SQLException e) {
-            e.printStackTrace();
+            session.setAttribute("message", "Failed to process booking: " + e.getMessage());
+            session.setAttribute("messageType", "danger");
+            response.sendRedirect("bookings");
         }
     }
 }

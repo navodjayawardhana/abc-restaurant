@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.abc.restaurant.dao.DatabaseConnection;
+import com.abc.restaurant.dao.HeadDAO;
 import com.abc.restaurant.dao.ProductDAO;
 import com.abc.restaurant.dao.PromotionDAO; // Import PromotionDAO
+import com.abc.restaurant.model.Head;
 import com.abc.restaurant.model.Product;
 import com.abc.restaurant.model.Promotion;
+import com.abc.restaurant.service.HeadService;
 import com.abc.restaurant.service.ProductService;
 import com.abc.restaurant.service.PromotionService;
 
@@ -23,11 +26,13 @@ public class IndexService extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductService productService;
     private PromotionService promotionService;
+    private HeadService headService;
 
     @Override
     public void init() {
         productService = new ProductService(new ProductDAO(DatabaseConnection.getConnection()));
         promotionService = new PromotionService(new PromotionDAO(DatabaseConnection.getConnection())); 
+        headService = new HeadService(new HeadDAO(DatabaseConnection.getConnection())); // Initialize headService properly
     }
 
     @Override
@@ -39,9 +44,12 @@ public class IndexService extends HttpServlet {
             List<Promotion> promotions = promotionService.getAllPromotions();
             request.setAttribute("promotions", promotions);
             
+            List<Head> heads = headService.getAllHeads();
+            request.setAttribute("heads", heads);
+            
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Cannot retrieve products or promotions", e);
+            throw new ServletException("Cannot retrieve products, promotions, or heads", e);
         }
     }
 }

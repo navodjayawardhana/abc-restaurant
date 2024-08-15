@@ -79,6 +79,13 @@
 			        <span>Booking</span>
 			    </a>
 			</li>
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadHeadList();">
+			        <i class="fas fa-heading"></i>
+			        <span>HeroHead</span>
+			    </a>
+			</li>
+
 			
 			<c:if test="${user.role != 'STAFF'}">
             <!-- Nav Item - Branch -->
@@ -253,6 +260,12 @@
         }
         function loadBookingList() {
             $.get("bookings?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
+            });
+        }
+        
+        function loadHeadList() {
+            $.get("heads?action=list", function (data) {
                 $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
             });
         }

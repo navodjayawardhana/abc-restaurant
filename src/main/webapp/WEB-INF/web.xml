@@ -82,6 +82,13 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.IndexService</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>HeadsServlet</servlet-name>
+  	<display-name>HeadsServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.HeadsServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -134,4 +141,9 @@
   	<servlet-name>IndexService</servlet-name>
   	<url-pattern>/IndexService</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HeadsServlet</servlet-name>
+  	<url-pattern>/HeadsServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

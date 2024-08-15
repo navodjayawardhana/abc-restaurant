@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class UserController extends HttpServlet {
                     break;
             }
         } catch (SQLException e) {
-            throw new ServletException(e);
+            throw new ServletException("Cannot perform operation", e);
         }
     }
 
@@ -72,7 +73,17 @@ public class UserController extends HttpServlet {
 
         User newUser = new User(name, email, password, role);
         newUser.setActive(isActive);
-        userViewDao.saveUser(newUser);
+
+        HttpSession session = request.getSession();
+        try {
+            userViewDao.saveUser(newUser);
+            session.setAttribute("message", "User added successfully!");
+            session.setAttribute("messageType", "success");
+        } catch (SQLException e) {
+            session.setAttribute("message", "Failed to add user: " + e.getMessage());
+            session.setAttribute("messageType", "danger");
+        }
+
         response.sendRedirect("main");
     }
 
@@ -95,13 +106,32 @@ public class UserController extends HttpServlet {
         user.setId(id);
         user.setActive(isActive);
 
-        userViewDao.updateUser(user);
+        HttpSession session = request.getSession();
+        try {
+            userViewDao.updateUser(user);
+            session.setAttribute("message", "User updated successfully!");
+            session.setAttribute("messageType", "success");
+        } catch (SQLException e) {
+            session.setAttribute("message", "Failed to update user: " + e.getMessage());
+            session.setAttribute("messageType", "danger");
+        }
+
         response.sendRedirect("main");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        userViewDao.deleteUser(id);
+
+        HttpSession session = request.getSession();
+        try {
+            userViewDao.deleteUser(id);
+            session.setAttribute("message", "User deleted successfully!");
+            session.setAttribute("messageType", "success");
+        } catch (SQLException e) {
+            session.setAttribute("message", "Failed to delete user: " + e.getMessage());
+            session.setAttribute("messageType", "danger");
+        }
+
         response.sendRedirect("main");
     }
 }
