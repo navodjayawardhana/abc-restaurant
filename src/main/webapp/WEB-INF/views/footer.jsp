@@ -74,6 +74,6 @@
           &copy; <span id="displayYear"></span> Distributed By
           <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
         </p>
-      </div>
+       </div>
     </div>
   </footer>

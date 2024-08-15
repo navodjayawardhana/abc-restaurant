@@ -82,6 +82,13 @@
                     </form>
                 </div>
             </div>
+            <div class="col-md-6">
+		          <div class="map_container ">
+		            <div id="googleMap">
+		            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.4570459247534!2d80.63297137359451!3d7.302437713624619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3676df00217ff%3A0xac59999a6821007e!2sICBT%20Kandy%20Campus!5e0!3m2!1sen!2slk!4v1723711152841!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		            </div>
+		          </div>
+        </div>
         </div>
     </div>
 </section>
@@ -109,8 +116,7 @@
   <!-- custom js -->
   <script src="js/custom.js"></script>
   <!-- Google Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-  </script>
+   
   <!-- End Google Map -->
 
 </body>
