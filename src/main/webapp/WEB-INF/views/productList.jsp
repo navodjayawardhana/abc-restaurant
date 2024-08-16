@@ -34,10 +34,15 @@
                     <option value="Fries">Fries</option>
                 </select>
             </div>
-            <div class="col-md-4 text-end">
-                <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</a>
-            </div>
+            
         </div>
+        <div class="row mb-3">
+			    <a href="generatePdfReport?report=product" class="btn btn-primary">Download PDF Report</a>
+			    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</a>
+		</div>
+	
+
+        
 
         <div class="table-responsive table-container">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
