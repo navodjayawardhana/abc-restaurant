@@ -88,6 +88,13 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.HeadsServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CartServlet</servlet-name>
+  	<display-name>CartServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.CartServlet</servlet-class>
+  </servlet>
+ 
   
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
@@ -145,5 +152,11 @@
   	<servlet-name>HeadsServlet</servlet-name>
   	<url-pattern>/HeadsServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CartServlet</servlet-name>
+  	<url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
+ 
+  
   
 </web-app>
