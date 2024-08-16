@@ -24,10 +24,12 @@
             <div class="col-md-6">
                 <input type="text" id="searchInput" class="form-control" placeholder="Search by Name...">
             </div>
-            <div class="col-md-6 text-end">
-                <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</a>
-            </div>
+            
         </div>
+        
+          <div class="col-md-6 text-end">
+		   <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</a>
+            	</div>
 
         <div class="table-responsive table-container">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

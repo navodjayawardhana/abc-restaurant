@@ -8,6 +8,7 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -62,4 +63,11 @@ public class UserService {
     private String generateActivationCode() {
         return UUID.randomUUID().toString();
     }
+
+    public List<User> getAllUsers() {
+        // Call the DAO layer to get all users from the database
+        return userDao.getAllUsers();
+    }
+
+	
 }

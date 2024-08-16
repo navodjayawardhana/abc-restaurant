@@ -25,6 +25,10 @@
                 <input type="text" id="searchInput" class="form-control" placeholder="Search by Name...">
             </div>
         </div>
+        
+          <div class="col-md-6 text-end">
+		   <a href="generatePdfReport?report=booking" class="btn btn-primary">Download Product PDF Report</a>
+           </div>
 
         <div class="table-responsive table-container">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
