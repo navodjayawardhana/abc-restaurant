@@ -53,8 +53,21 @@
                     </select>
                 </div>
 
+                <!-- Take Away or Dining Option -->
+                <div class="mb-3">
+                    <label for="orderType" class="form-label">Order Type</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="orderType" id="takeAway" value="Take Away" required>
+                        <label class="form-check-label" for="takeAway">Take Away</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="orderType" id="dining" value="Dining">
+                        <label class="form-check-label" for="dining">Dining</label>
+                    </div>
+                </div>
+
                 <div class="col-md-12 mt-5">
-                    <button type="submit" class="btn btn-warning btn-lg w-100">Place Order</button>
+                    <button type="button" class="btn btn-warning btn-lg w-100" id="placeOrderBtn">Place Order</button>
                 </div>
             </form>
         </div>
@@ -98,6 +111,50 @@
       </div>
     </div>
   </div>
+  
+   <!-- Payment Option Modal -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Choose Payment Method</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-around">
+              <button type="button" class="btn btn-primary" id="cardPaymentBtn">Card Payment</button>
+              <button type="button" class="btn btn-secondary" id="cashPaymentBtn">Cash Payment</button>
+              <button type="button" class="btn btn-info" id="payLaterBtn">Pay Later</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+        // Show the payment modal when "Place Order" is clicked
+        $('#placeOrderBtn').click(function() {
+            $('#paymentModal').modal('show');
+        });
+
+        // Handle card payment option
+        $('#cardPaymentBtn').click(function() {
+            window.location.href = 'https://buy.stripe.com/test_4gw0209kPf7iexG3cc'; // Replace with the actual Stripe gateway URL
+        });
+
+        // Handle cash payment option
+        $('#cashPaymentBtn').click(function() {
+            $('#checkoutForm').attr('action', 'cashPaymentServlet').submit(); // Submit the form for cash payment
+        });
+
+        // Handle pay later option
+        $('#payLaterBtn').click(function() {
+            $('#checkoutForm').attr('action', 'payLaterServlet').submit(); // Submit the form for pay later option
+        });
+    });
+  </script>
+  
 
   <script>
     $(document).ready(function() {

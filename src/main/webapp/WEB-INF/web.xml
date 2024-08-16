@@ -100,6 +100,12 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.CheckoutServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>StripePayment</servlet-name>
+  	<display-name>StripePayment</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.StripePayment</servlet-class>
+  </servlet>
  
   
   <servlet-mapping>
@@ -165,6 +171,10 @@
   <servlet-mapping>
   	<servlet-name>CheckoutServlet</servlet-name>
   	<url-pattern>/CheckoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StripePayment</servlet-name>
+  	<url-pattern>/StripePayment</url-pattern>
   </servlet-mapping>
  
   
