@@ -20,26 +20,23 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Validate user credentials
         if (userService.validateUser(email, password)) {
             HttpSession session = request.getSession();
             User user = userService.getUserByEmail(email);
 
-            // Set the user in the session
             session.setAttribute("user", user);
 
-            // Check the role of the user
             String role = user.getRole();
             
             if ("customer".equals(role)) {
-                // Redirect customer users to their dashboard
+
                 response.sendRedirect("checkout");
             } else {
-                // Allow other roles (e.g., admin, staff) to access the main page
+
                 response.sendRedirect("main");
             }
         } else {
-            // If validation fails, redirect to the login failure page
+
             response.sendRedirect("loginFail.jsp");
         }
     }

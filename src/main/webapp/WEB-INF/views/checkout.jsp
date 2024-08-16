@@ -77,7 +77,12 @@
             <div class="card p-4 bg-light">
                 <h5 class="card-title">Summary</h5>
                 <ul class="list-group">
-                    <c:forEach var="item" items="${cart}">
+                        <c:set var="totalPrice" value="0" />
+					   <c:forEach var="item" items="${cart}">
+					       <!-- Calculate total for each item -->
+					       <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
+					       <!-- Add item total to totalPrice -->
+					       <c:set var="totalPrice" value="${totalPrice + itemTotal}" />
                         <li class="list-group-item d-flex justify-content-between">
                             ${item.product.name} (x${item.quantity})
                             <span>LKR ${item.product.price * item.quantity}</span>
@@ -104,7 +109,7 @@
         <div class="modal-body">
           <p>Please log in or continue as a guest to complete your order.</p>
           <div class="d-flex justify-content-around">
-              <a href="login.jsp" class="btn btn-primary">Login</a>
+              <a href="login.jsp" class="btn btn-warning">Login</a>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="guestCheckoutBtn">Continue as Guest</button>
           </div>
         </div>
@@ -122,7 +127,7 @@
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-around">
-              <button type="button" class="btn btn-primary" id="cardPaymentBtn">Card Payment</button>
+              <button type="button" class="btn btn-warning" id="cardPaymentBtn">Card Payment</button>
               <button type="button" class="btn btn-secondary" id="cashPaymentBtn">Cash Payment</button>
               <button type="button" class="btn btn-info" id="payLaterBtn">Pay Later</button>
           </div>

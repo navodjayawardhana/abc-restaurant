@@ -85,6 +85,20 @@
 			        <span>HeroHead</span>
 			    </a>
 			</li>
+			
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadHeadList();">
+			        <i class="fas fa-heading"></i>
+			        <span>Service</span>
+			    </a>
+			</li>
+			
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadHeadList();">
+			        <i class="fas fa-heading"></i>
+			        <span>Gallery</span>
+			    </a>
+			</li>
 
 			
 			<c:if test="${user.role != 'STAFF'}">
