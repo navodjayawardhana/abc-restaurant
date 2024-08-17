@@ -10,6 +10,7 @@
             margin-top: 20px;
         }
     </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-4">
@@ -45,6 +46,7 @@
 
                                 <!-- Button to view order details -->
                                 <button class="btn btn-warning btn-sm view-details-btn" data-id="${order.id}" data-bs-toggle="modal" data-bs-target="#viewOrderDetailsModal">View Details</button>
+                                 <a href="generatePdfReport?report=order&orderId=${order.id}" class="btn btn-primary btn-sm">Generate PDF</a>
                             </td>
                         </tr>
                     </c:forEach>

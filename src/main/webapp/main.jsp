@@ -47,12 +47,13 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
                 <div class="sidebar-brand-text mx-3">${user.role} Dashboard</div>
+                
             </a>
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="main">
+                <a class="nav-link" href="#" onclick="loadDashbord();">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -189,16 +190,33 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Content Row -->
+                
+                <!-- Page Heading -->
+                    
+                    
                     <div class="row">
                         <!-- Dynamically include content based on the 'includePage' attribute -->
                         <c:if test="${not empty includePage}">
                             <jsp:include page="${includePage}" />
                         </c:if>
+                          
                         
-                        
+                       
                     </div>
-                </div>
+                    
+                    
+                    </div>
+                    
+                    
+                    
+                    
+                
+               
+                
+                
+					                    <!-- Daily Sales Table -->
+					 
+				
 
                 <!-- /.container-fluid -->
 
@@ -209,7 +227,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy;</span>
+                        <span>Copyright &copy;ABC</span>
                     </div>
                 </div>
             </footer>
@@ -325,6 +343,13 @@
                 $('.container-fluid .row').html(data); // Assuming the servlet returns the content of ServiceList.jsp
             });
         }
+        
+        function loadDashbord() {
+            $.get("dashbord", function (data) {
+                $('.container-fluid .row').html(data); // This will load the dashboard content into the container
+            });
+        }
+
 
 
 

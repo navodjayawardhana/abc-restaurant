@@ -16,6 +16,7 @@
             justify-content: center;
         }
     </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -27,8 +28,8 @@
             
         </div>
          <div class="row mb-3">
-			    <a href="generatePdfReport?report=branch" class="btn btn-primary">Download PDF Report</a>
-			    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addBranchModal">Add New Branch</a>
+			    <a href="generatePdfReport?report=branch" class="btn btn-primary ml-3">Download PDF Report</a>
+			    <a class="btn btn-success ml-3" data-bs-toggle="modal" data-bs-target="#addBranchModal">Add New Branch</a>
          </div>
 
         <div class="table-responsive table-container">

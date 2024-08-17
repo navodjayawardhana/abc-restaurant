@@ -128,4 +128,8 @@ public class BookingService {
             mex.printStackTrace();
         }
     }
+    
+    public int getPendingOrderCount() throws SQLException {
+        return bookingDAO.getPendingBookingCount();
+    }
 }

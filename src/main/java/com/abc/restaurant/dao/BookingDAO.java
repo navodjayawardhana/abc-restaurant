@@ -87,4 +87,15 @@ public class BookingDAO {
             stmt.executeUpdate();
         }
     }
+
+    public int getPendingBookingCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS total FROM bookings WHERE status = 'Pending'";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        }
+        return 0;
+    }
 }

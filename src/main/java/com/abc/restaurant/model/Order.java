@@ -1,5 +1,6 @@
 package com.abc.restaurant.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Order {
@@ -12,6 +13,8 @@ public class Order {
     private String paymentMethod;
     private String status;
     private Timestamp createdAt;
+    private BigDecimal totalPrice;
+    private int totalQuantity;
 
     public Order(int id, String name, String email, String address, String branch, String orderType, String paymentMethod, String status, Timestamp createdAt) {
         this.id = id;  // 'id' corresponds to the 'id' field in the database
@@ -25,6 +28,13 @@ public class Order {
         this.createdAt = createdAt;
     }
 
+    public Order(int id, String name, Timestamp createdAt, BigDecimal totalPrice, int totalQuantity) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.totalPrice = totalPrice;
+        this.totalQuantity = totalQuantity;  // Initialize totalQuantity
+    }
     // Getter and setter for 'id'
     public int getId() {
         return id;
@@ -98,4 +108,21 @@ public class Order {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+	
 }

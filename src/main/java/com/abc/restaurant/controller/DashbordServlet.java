@@ -1,23 +1,27 @@
 package com.abc.restaurant.controller;
 
-import com.abc.restaurant.dao.BookingDAO;
-import com.abc.restaurant.dao.BranchDAO;
-import com.abc.restaurant.service.OrderServiceview;
-import com.abc.restaurant.dao.DatabaseConnection;
-import com.abc.restaurant.model.DailySales; // Assuming you have a DailySales model
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.math.BigDecimal;
-import java.util.List;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
-    private OrderServiceview orderServiceview;
+import com.abc.restaurant.dao.BookingDAO;
+import com.abc.restaurant.dao.BranchDAO;
+import com.abc.restaurant.dao.DatabaseConnection;
+import com.abc.restaurant.model.DailySales;
+import com.abc.restaurant.service.OrderServiceview;
+
+@WebServlet("/dashbord")
+public class DashbordServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private OrderServiceview orderServiceview;
     private BranchDAO branchDAO;
     private BookingDAO bookingDAO;
 
@@ -55,7 +59,7 @@ public class MainServlet extends HttpServlet {
             throw new ServletException("Failed to retrieve data", e);
         }
 
-        request.getRequestDispatcher("main.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/views/dashbord.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

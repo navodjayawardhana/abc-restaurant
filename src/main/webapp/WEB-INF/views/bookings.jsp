@@ -16,6 +16,7 @@
             justify-content: center;
         }
     </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,7 +27,7 @@
             </div>
         </div>
          <div class="row mb-3">
-			    <a href="generatePdfReport?report=booking" class="btn btn-primary">Download PDF Report</a>
+			    <a href="generatePdfReport?report=booking" class="btn btn-primary ml-3">Download PDF Report</a>
 		 </div>
 
         <div class="table-responsive table-container">

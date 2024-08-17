@@ -2,6 +2,7 @@ package com.abc.restaurant.service;
 
 
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,5 +34,9 @@ public class BranchService {
 
     public List<Branch> getAllBranches() throws SQLException {
         return branchDAO.getAllBranches();
+    }
+    
+    public int totalBranchCount() throws SQLException {
+        return branchDAO.getTotalBranch();
     }
 }
