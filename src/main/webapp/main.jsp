@@ -65,13 +65,27 @@
                 </a>
             </li>
             
+            <!-- Nav Item - Orders -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadOrderList();">
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+            
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadPromotionList();">
 			        <i class="fas fa-fw fa-tag"></i>
 			        <span>Promotion</span>
 			    </a>
 			</li>
-			
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadRatingList();">
+			        <i class="fas fa-fw fa-star"></i>
+			        <span>Ratings</span>
+			    </a>
+			</li>
+						
 						<!-- Nav Item - Booking -->
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadBookingList();">
@@ -79,6 +93,30 @@
 			        <span>Booking</span>
 			    </a>
 			</li>
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadHeadList();">
+			        <i class="fas fa-heading"></i>
+			        <span>HeroHead</span>
+			    </a>
+			</li>
+			
+			
+			
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadGalleryList();">
+			        <i class="fas fa-fw fa-images"></i>
+			        <span>Gallery</span>
+			    </a>
+			</li>
+			
+			<!-- New Nav Item - Service -->
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadServiceList();">
+			        <i class="fas fa-fw fa-concierge-bell"></i>
+			        <span>Service</span>
+			    </a>
+			</li>
+
 			
 			<c:if test="${user.role != 'STAFF'}">
             <!-- Nav Item - Branch -->
@@ -157,6 +195,8 @@
                         <c:if test="${not empty includePage}">
                             <jsp:include page="${includePage}" />
                         </c:if>
+                        
+                        
                     </div>
                 </div>
 
@@ -200,7 +240,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-success" href="index.jsp">Logout</a>
+                    <a class="btn btn-success" href="index">Logout</a>
                 </div>
             </div>
         </div>
@@ -254,6 +294,35 @@
         function loadBookingList() {
             $.get("bookings?action=list", function (data) {
                 $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
+            });
+        }
+        
+        function loadHeadList() {
+            $.get("heads?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
+            });
+        }
+
+        // Load the order list in the dashboard content
+        function loadOrderList() {
+            $.get("orders?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Load the content of the OrderList.jsp page
+            });
+        }
+        function loadRatingList() {
+            $.get("adminratings?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of RatingList.jsp
+            });
+        }
+        
+        function loadGalleryList() {
+            $.get("galleryadmin?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of galleryList.jsp
+            });
+        }
+        function loadServiceList() {
+            $.get("serviceadmin?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of ServiceList.jsp
             });
         }
 

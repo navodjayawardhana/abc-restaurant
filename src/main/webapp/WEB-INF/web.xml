@@ -76,6 +76,80 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.AdminBookingServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>IndexService</servlet-name>
+  	<display-name>IndexService</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.IndexService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HeadsServlet</servlet-name>
+  	<display-name>HeadsServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.HeadsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CartServlet</servlet-name>
+  	<display-name>CartServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.CartServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CheckoutServlet</servlet-name>
+  	<display-name>CheckoutServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.CheckoutServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StripePayment</servlet-name>
+  	<display-name>StripePayment</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.StripePayment</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<display-name>OrderServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.OrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RatingServlet</servlet-name>
+  	<display-name>RatingServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.RatingServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminRatingServlet</servlet-name>
+  	<display-name>AdminRatingServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.AdminRatingServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GalleryServler</servlet-name>
+  	<display-name>GalleryServler</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.GalleryServler</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ServiceServlet</servlet-name>
+  	<display-name>ServiceServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.ServiceServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GalleryServlet</servlet-name>
+  	<display-name>GalleryServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.GalleryServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ServiceServletadmin</servlet-name>
+  	<display-name>ServiceServletadmin</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.ServiceServletadmin</servlet-class>
+  </servlet>
+ 
+  
   <servlet-mapping>
   	<servlet-name>RegisterController</servlet-name>
   	<url-pattern>/RegisterController</url-pattern>
@@ -124,4 +198,55 @@
   	<servlet-name>AdminBookingServlet</servlet-name>
   	<url-pattern>/AdminBookingServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IndexService</servlet-name>
+  	<url-pattern>/IndexService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HeadsServlet</servlet-name>
+  	<url-pattern>/HeadsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CartServlet</servlet-name>
+  	<url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CheckoutServlet</servlet-name>
+  	<url-pattern>/CheckoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StripePayment</servlet-name>
+  	<url-pattern>/StripePayment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RatingServlet</servlet-name>
+  	<url-pattern>/RatingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminRatingServlet</servlet-name>
+  	<url-pattern>/AdminRatingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GalleryServler</servlet-name>
+  	<url-pattern>/GalleryServler</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ServiceServlet</servlet-name>
+  	<url-pattern>/ServiceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GalleryServlet</servlet-name>
+  	<url-pattern>/GalleryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ServiceServletadmin</servlet-name>
+  	<url-pattern>/ServiceServletadmin</url-pattern>
+  </servlet-mapping>
+ 
+  
+  
 </web-app>

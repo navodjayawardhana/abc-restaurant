@@ -46,17 +46,36 @@ public class UserService {
             mail.setAuthenticator(new DefaultAuthenticator("abcrest39@gmail.com", "qlszgczchqwnamyh"));
             mail.setSSLOnConnect(true);
             mail.setFrom("abcrest39@gmail.com", "ABC Restaurant"); // Use the actual sender email
-            mail.setSubject("Account Activation");
-            mail.setMsg("Please click the following link to activate your account: " +
-            	    "http://localhost:8081/abc-restaurant/activate?email=" + email + "&code=" + activationCode);
+            mail.setSubject("Activate Your Account");
+
+            // Create the HTML content with inline CSS for beautiful design
+            String htmlMessage = "<html>" +
+                "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
+                "<div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>" +
+                "<h2 style='color: #333;'>Welcome to ABC Restaurant!</h2>" +
+                "<p style='color: #555;'>Thank you for signing up. We're excited to have you on board!</p>" +
+                "<p style='color: #555;'>To activate your account, simply click the button below:</p>" +
+                "<a href='http://localhost:8081/abc-restaurant/activate?email=" + email + "&code=" + activationCode + "' " +
+                "style='background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;'>Activate Account</a>" +
+                "<p style='color: #555; margin-top: 20px;'>Or you can paste the following link into your browser:</p>" +
+                "<p style='color: #28a745;'>http://localhost:8081/abc-restaurant/activate?email=" + email + "&code=" + activationCode + "</p>" +
+                "<hr style='border: none; border-top: 1px solid #eee;'/>" +
+                "<p style='color: #aaa; font-size: 12px;'>If you did not sign up for this account, please ignore this email.</p>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
+
+           
+            mail.setContent(htmlMessage, "text/html");
 
             mail.addTo(email);
-            mail.setDebug(true); // Enable debugging for detailed output
+            mail.setDebug(true); 
             mail.send();
         } catch (EmailException e) {
             e.printStackTrace();
         }
     }
+
 
 
     private String generateActivationCode() {

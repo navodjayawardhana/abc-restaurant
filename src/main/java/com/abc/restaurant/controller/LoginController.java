@@ -1,5 +1,6 @@
 package com.abc.restaurant.controller;
 
+import com.abc.restaurant.model.User;
 import com.abc.restaurant.service.UserService;
 
 import javax.servlet.ServletException;
@@ -21,9 +22,21 @@ public class LoginController extends HttpServlet {
 
         if (userService.validateUser(email, password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", userService.getUserByEmail(email));
-            response.sendRedirect("main");
+            User user = userService.getUserByEmail(email);
+
+            session.setAttribute("user", user);
+
+            String role = user.getRole();
+            
+            if ("customer".equals(role)) {
+
+                response.sendRedirect("checkout");
+            } else {
+
+                response.sendRedirect("main");
+            }
         } else {
+
             response.sendRedirect("loginFail.jsp");
         }
     }

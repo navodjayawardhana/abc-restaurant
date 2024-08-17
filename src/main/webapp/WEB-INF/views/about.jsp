@@ -16,15 +16,15 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
 
-  <title> ABC Restaurant </title>
+  <title>ABC Restaurant</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
-  <!--owl slider stylesheet -->
+  <!-- owl slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- nice select  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" />
   <!-- font awesome style -->
   <link href="css/font-awesome.min.css" rel="stylesheet" />
 
@@ -38,41 +38,51 @@
 <body class="sub_page">
 
   <div class="hero_area">
-  <div class="bg-box">
+    <div class="bg-box">
       <img src="images/hero-bg.jpg" alt="">
     </div>
 
-<%@ include file="navbar.jsp" %>
+    <%@ include file="navbar.jsp" %>
 
-</div>
+  </div>
+
   <section class="about_section layout_padding">
-    <div class="container  ">
-
+    <div class="container">
       <div class="row">
-        <div class="col-md-6 ">
+        <div class="col-md-6">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <img src="images/about-img.png" alt="About ABC Restaurant">
           </div>
         </div>
         <div class="col-md-6">
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                We Are Feane
+                About ABC Restaurant
               </h2>
             </div>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-              the middle of text. All
+              Welcome to ABC Restaurant, where flavor meets tradition. Since our inception, we have strived to provide a dining experience that combines culinary excellence with a warm, family-friendly atmosphere. We are passionate about serving fresh, high-quality meals made from locally sourced ingredients.
             </p>
-            <a href="">
-              Read More
+            <p>
+              Our menu showcases a perfect blend of classic dishes and contemporary cuisine, created with love and care by our dedicated chefs. From signature dishes to daily specials, every plate is a testament to our commitment to excellence.
+            </p>
+            <a href="menu">
+              Explore Our Menu
             </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-<%@ include file="footer.jsp" %>
+
+  
+  <%@ include file="footer.jsp" %>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

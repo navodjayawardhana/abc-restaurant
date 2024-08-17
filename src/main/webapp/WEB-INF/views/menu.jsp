@@ -82,9 +82,9 @@
                                     <div class="options">
                                         <h6>LKR: ${product.price}</h6>
                                         <h6 hidden>Category: ${product.category}</h6>
-                                        <a href="#">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve"></svg>
-                                        </a>
+									<a href="cart?action=addToCart&productId=${product.id}&quantity=1" class="btn btn-warning">
+									    <i class="fa fa-shopping-cart" style="color: white;"></i>
+									</a>
                                     </div>
                                 </div>
                             </div>
