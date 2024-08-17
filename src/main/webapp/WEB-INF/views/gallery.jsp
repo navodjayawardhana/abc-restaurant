@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,41 +46,14 @@
       <h2 class="gallery-title">Our Gallery</h2>
     </div>
 
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery1.jpg" alt="Gallery Image 1">
+    <c:forEach var="gallery" items="${galleries}">
+      <div class="col-md-4 mb-4">
+        <div class="gallery-item">
+          <img src="${pageContext.request.contextPath}/${gallery.imagePath}" alt="${gallery.name}">
+        </div>
       </div>
-    </div>
+    </c:forEach>
 
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery2.jpg" alt="Gallery Image 2">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery3.jpg" alt="Gallery Image 3">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery4.jpg" alt="Gallery Image 4">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery5.jpg" alt="Gallery Image 5">
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="gallery-item">
-        <img src="images/gallery6.jpg" alt="Gallery Image 6">
-      </div>
-    </div>
   </div>
 </div>
 

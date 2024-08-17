@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <!-- Importing JSTL Core Tag Library -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,30 +48,18 @@
     <div class="col-lg-12">
       <h2 class="service-title">Our Services</h2>
     </div>
-    
-    <div class="col-md-4">
-      <div class="service-item text-center">
-        <i class="fa fa-cutlery fa-3x"></i>
-        <h5>Fine Dining</h5>
-        <p>Experience our exclusive dining experience with gourmet food and exceptional service.</p>
+
+    <!-- Loop through the services from the backend -->
+    <c:forEach var="service" items="${services}">
+      <div class="col-md-4">
+        <div class="service-item text-center">
+          <i class="fa fa-cutlery fa-3x"></i> <!-- You can change icons dynamically if needed -->
+          <h5>${service.title}</h5> <!-- Dynamically display the service title -->
+          <p>${service.description}</p> <!-- Dynamically display the service description -->
+        </div>
       </div>
-    </div>
+    </c:forEach>
     
-    <div class="col-md-4">
-      <div class="service-item text-center">
-        <i class="fa fa-birthday-cake fa-3x"></i>
-        <h5>Catering Services</h5>
-        <p>We offer professional catering services for all your events with a variety of menu options.</p>
-      </div>
-    </div>
-    
-    <div class="col-md-4">
-      <div class="service-item text-center">
-        <i class="fa fa-coffee fa-3x"></i>
-        <h5>Private Parties</h5>
-        <p>Host your private parties at our restaurant with customized menu and private dining areas.</p>
-      </div>
-    </div>
   </div>
 </div>
 

@@ -100,17 +100,20 @@
 			    </a>
 			</li>
 			
+			
+			
 			<li class="nav-item">
-			    <a class="nav-link" href="#" onclick="loadHeadList();">
-			        <i class="fas fa-heading"></i>
-			        <span>Service</span>
+			    <a class="nav-link" href="#" onclick="loadGalleryList();">
+			        <i class="fas fa-fw fa-images"></i>
+			        <span>Gallery</span>
 			    </a>
 			</li>
 			
+			<!-- New Nav Item - Service -->
 			<li class="nav-item">
-			    <a class="nav-link" href="#" onclick="loadHeadList();">
-			        <i class="fas fa-heading"></i>
-			        <span>Gallery</span>
+			    <a class="nav-link" href="#" onclick="loadServiceList();">
+			        <i class="fas fa-fw fa-concierge-bell"></i>
+			        <span>Service</span>
 			    </a>
 			</li>
 
@@ -309,6 +312,17 @@
         function loadRatingList() {
             $.get("adminratings?action=list", function (data) {
                 $('.container-fluid .row').html(data); // Assuming the servlet returns the content of RatingList.jsp
+            });
+        }
+        
+        function loadGalleryList() {
+            $.get("galleryadmin?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of galleryList.jsp
+            });
+        }
+        function loadServiceList() {
+            $.get("serviceadmin?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of ServiceList.jsp
             });
         }
 
