@@ -79,7 +79,13 @@
 			        <span>Promotion</span>
 			    </a>
 			</li>
-			
+			<li class="nav-item">
+			    <a class="nav-link" href="#" onclick="loadRatingList();">
+			        <i class="fas fa-fw fa-star"></i>
+			        <span>Ratings</span>
+			    </a>
+			</li>
+						
 						<!-- Nav Item - Booking -->
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadBookingList();">
@@ -300,6 +306,12 @@
                 $('.container-fluid .row').html(data); // Load the content of the OrderList.jsp page
             });
         }
+        function loadRatingList() {
+            $.get("adminratings?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of RatingList.jsp
+            });
+        }
+
 
 
         setTimeout(() => {

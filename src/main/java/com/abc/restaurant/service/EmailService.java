@@ -74,11 +74,10 @@ public class EmailService {
     }
     
     
- // Method to send an order completion email
     public static void sendOrderCompletionEmail(String customerEmail, String customerName, int orderId) {
         String subject = "Your Order is Complete - ABC Restaurant";
 
-        // HTML content for the order completion email
+        // HTML content for the order completion email with a rating link
         String body = "<html>" +
                 "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
                 "<div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>" +
@@ -86,6 +85,7 @@ public class EmailService {
                 "<p style='color: #555;'>Hello " + customerName + ",</p>" +
                 "<p style='color: #555;'>We're delighted to let you know that your order (ID: #" + orderId + ") has been completed successfully!</p>" +
                 "<p style='color: #555;'>Thank you for choosing ABC Restaurant. We hope you enjoy your meal!</p>" +
+                "<p style='color: #555;'>We would love to hear your feedback! Please <a href='http://localhost:8081/abc-restaurant/rate?orderId=" + orderId + "'>rate your experience</a>.</p>" +
                 "<p style='color: #555;'>If you have any questions or concerns, feel free to reach out to us at <a href='mailto:contact@abcrestaurant.com'>contact@abcrestaurant.com</a>.</p>" +
                 "<p style='color: #555;'>Best regards, <br><strong>ABC Restaurant Team</strong></p>" +
                 "<hr style='border: none; border-top: 1px solid #eee;'/>" +
@@ -97,5 +97,6 @@ public class EmailService {
         // Send the email
         sendEmail(customerEmail, subject, body);
     }
+
 
 }

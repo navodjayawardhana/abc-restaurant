@@ -14,12 +14,15 @@ import com.abc.restaurant.dao.DatabaseConnection;
 import com.abc.restaurant.dao.HeadDAO;
 import com.abc.restaurant.dao.ProductDAO;
 import com.abc.restaurant.dao.PromotionDAO; // Import PromotionDAO
+import com.abc.restaurant.dao.RatingDAO;
 import com.abc.restaurant.model.Head;
 import com.abc.restaurant.model.Product;
 import com.abc.restaurant.model.Promotion;
+import com.abc.restaurant.model.Rating;
 import com.abc.restaurant.service.HeadService;
 import com.abc.restaurant.service.ProductService;
 import com.abc.restaurant.service.PromotionService;
+import com.abc.restaurant.service.RatingService;
 
 @WebServlet("/index")
 public class IndexService extends HttpServlet {
@@ -27,12 +30,15 @@ public class IndexService extends HttpServlet {
     private ProductService productService;
     private PromotionService promotionService;
     private HeadService headService;
+    private RatingService ratingService;
+    
 
     @Override
     public void init() {
         productService = new ProductService(new ProductDAO(DatabaseConnection.getConnection()));
         promotionService = new PromotionService(new PromotionDAO(DatabaseConnection.getConnection())); 
-        headService = new HeadService(new HeadDAO(DatabaseConnection.getConnection())); // Initialize headService properly
+        headService = new HeadService(new HeadDAO(DatabaseConnection.getConnection())); 
+        ratingService = new RatingService();
     }
 
     @Override
@@ -47,9 +53,13 @@ public class IndexService extends HttpServlet {
             List<Head> heads = headService.getAllHeads();
             request.setAttribute("heads", heads);
             
+            List<Rating> ratings = ratingService.getAllRatings(); // Fetch all ratings
+            request.setAttribute("ratings", ratings); // Add ratings to request
+            
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Cannot retrieve products, promotions, or heads", e);
+            throw new ServletException("Cannot retrieve products, promotions, heads, or ratings", e);
         }
     }
 }
+

@@ -112,6 +112,18 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.OrderServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RatingServlet</servlet-name>
+  	<display-name>RatingServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.RatingServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminRatingServlet</servlet-name>
+  	<display-name>AdminRatingServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.AdminRatingServlet</servlet-class>
+  </servlet>
  
   
   <servlet-mapping>
@@ -185,6 +197,14 @@
   <servlet-mapping>
   	<servlet-name>OrderServlet</servlet-name>
   	<url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RatingServlet</servlet-name>
+  	<url-pattern>/RatingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminRatingServlet</servlet-name>
+  	<url-pattern>/AdminRatingServlet</url-pattern>
   </servlet-mapping>
  
   
