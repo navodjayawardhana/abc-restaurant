@@ -69,6 +69,7 @@
                 <div class="col-md-12 mt-5">
                     <button type="button" class="btn btn-warning btn-lg w-100" id="placeOrderBtn">Place Order</button>
                 </div>
+                <input type="hidden" id="paymentMethod" name="paymentMethod" value="" /> <!-- Hidden field to set payment method -->
             </form>
         </div>
 
@@ -77,15 +78,15 @@
             <div class="card p-4 bg-light">
                 <h5 class="card-title">Summary</h5>
                 <ul class="list-group">
-                        <c:set var="totalPrice" value="0" />
-					   <c:forEach var="item" items="${cart}">
-					       <!-- Calculate total for each item -->
-					       <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
-					       <!-- Add item total to totalPrice -->
-					       <c:set var="totalPrice" value="${totalPrice + itemTotal}" />
+                    <c:set var="totalPrice" value="0" />
+                    <c:forEach var="item" items="${cart}">
+                        <!-- Calculate total for each item -->
+                        <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
+                        <!-- Add item total to totalPrice -->
+                        <c:set var="totalPrice" value="${totalPrice + itemTotal}" />
                         <li class="list-group-item d-flex justify-content-between">
                             ${item.product.name} (x${item.quantity})
-                            <span>LKR ${item.product.price * item.quantity}</span>
+                            <span>LKR ${itemTotal}</span>
                         </li>
                     </c:forEach>
                     <li class="list-group-item d-flex justify-content-between">
@@ -145,17 +146,20 @@
 
         // Handle card payment option
         $('#cardPaymentBtn').click(function() {
-            window.location.href = 'https://buy.stripe.com/test_4gw0209kPf7iexG3cc'; // Replace with the actual Stripe gateway URL
+            $('#paymentMethod').val('Card');
+            $('#checkoutForm').submit();
         });
 
         // Handle cash payment option
         $('#cashPaymentBtn').click(function() {
-            $('#checkoutForm').attr('action', 'cashPaymentServlet').submit(); // Submit the form for cash payment
+            $('#paymentMethod').val('Cash');
+            $('#checkoutForm').submit();
         });
 
         // Handle pay later option
         $('#payLaterBtn').click(function() {
-            $('#checkoutForm').attr('action', 'payLaterServlet').submit(); // Submit the form for pay later option
+            $('#paymentMethod').val('Pay Later');
+            $('#checkoutForm').submit();
         });
     });
   </script>

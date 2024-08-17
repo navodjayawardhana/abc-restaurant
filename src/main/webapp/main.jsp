@@ -65,6 +65,14 @@
                 </a>
             </li>
             
+            <!-- Nav Item - Orders -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadOrderList();">
+                    <i class="fas fa-fw fa-receipt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+            
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadPromotionList();">
 			        <i class="fas fa-fw fa-tag"></i>
@@ -178,6 +186,8 @@
                         <c:if test="${not empty includePage}">
                             <jsp:include page="${includePage}" />
                         </c:if>
+                        
+                        
                     </div>
                 </div>
 
@@ -221,7 +231,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-success" href="index.jsp">Logout</a>
+                    <a class="btn btn-success" href="index">Logout</a>
                 </div>
             </div>
         </div>
@@ -284,6 +294,12 @@
             });
         }
 
+        // Load the order list in the dashboard content
+        function loadOrderList() {
+            $.get("orders?action=list", function (data) {
+                $('.container-fluid .row').html(data); // Load the content of the OrderList.jsp page
+            });
+        }
 
 
         setTimeout(() => {
