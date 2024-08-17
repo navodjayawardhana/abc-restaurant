@@ -32,6 +32,42 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rating-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .rating-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .rating-item .username {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .rating-item .text-muted {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .rating-item .rating-stars {
+            color: #f1c40f;
+            font-size: 20px;
+        }
+        .rating-container {
+            margin-top: 40px;
+        }
+        .rating-container .col-md-4 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    </style>
 
 </head>
 
@@ -220,9 +256,7 @@
       </div>
     
   </section>
-
- 
-
+  
   <section class="client_section layout_padding-bottom">
     <div class="container">
       <div class="heading_container heading_center psudo_white_primary mb_45">
@@ -232,26 +266,35 @@
       </div>
       <div class="carousel-wrap row ">
         <div class="owl-carousel client_owl-carousel">
-<c:forEach var="rating" items="${ratings}">
-                <div class="col-md-4">
-                    <div class="rating-item">
-                        <div class="detail-box">
-                            <p class="mb-2">
-                                "${rating.feedback}"
+          <c:forEach var="rating" items="${ratings}">
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                   "${rating.feedback}"
+                </p>
+                <h6>
+                 ${rating.username}
+                </h6>
+                <p>
+                 -${rating.username}-
+                </p>
+                <p class="text-muted">
+                                Rating: <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                             </p>
-                            <h6 class="username">
-                                - ${rating.username}
-                            </h6>
-                            <p class="text-muted">
-                                Rating: <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> ${rating.rating} / 5
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>        </div>
+              </div>
+            </div>
+          </div>
+</c:forEach>
+          
+        </div>
       </div>
     </div>
   </section>
+
+ 
+
+ 
 
   <!-- end client section -->
 
@@ -278,9 +321,10 @@
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
- <!-- Bootstrap JS and dependencies -->
+ 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
 
 
 </body>

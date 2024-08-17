@@ -1,4 +1,5 @@
-<!-- Navbar with Cart Icon -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <header class="header_section">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
@@ -25,9 +26,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="booking">Book Table</a>
                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="">Gallery</a>
-                    </li>
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					    Explore
+					  </a>
+					  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					    <li><a class="dropdown-item" href="service">Services</a></li>
+					    <li><a class="dropdown-item" href="gallery">Gallery</a></li>
+					  </ul>
+					</li>
+
                 </ul>
                 <div class="user_option">
                     <a href="login.jsp" class="user_link">
@@ -135,4 +143,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
