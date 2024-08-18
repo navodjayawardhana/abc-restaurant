@@ -128,7 +128,7 @@
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-around">
-              <button type="button" class="btn btn-warning" id="cardPaymentBtn">Card Payment</button>
+             <a href="https://buy.stripe.com/test_4gw0209kPf7iexG3cc" class="btn btn-warning" id="cardPaymentBtn">Card Payment</a>
               <button type="button" class="btn btn-secondary" id="cashPaymentBtn">Cash Payment</button>
               <button type="button" class="btn btn-info" id="payLaterBtn">Pay Later</button>
           </div>
@@ -144,11 +144,7 @@
             $('#paymentModal').modal('show');
         });
 
-        // Handle card payment option
-        $('#cardPaymentBtn').click(function() {
-            $('#paymentMethod').val('Card');
-            $('#checkoutForm').submit();
-        });
+       
 
         // Handle cash payment option
         $('#cashPaymentBtn').click(function() {
