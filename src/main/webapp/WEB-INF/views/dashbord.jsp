@@ -45,14 +45,16 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+             <c:if test="${user.role != 'STAFF'}">
             <a href="generatePdfReport?report=incomeStatement" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a>
+            </c:if>
         </div>
 
         <!-- Dashboard Cards -->
         <div class="row">
-            <!-- Earnings Card -->
+            <c:if test="${user.role != 'STAFF'}">
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -68,6 +70,7 @@
                     </div>
                 </div>
             </div>
+            
 
             <!-- Branches Card -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -85,6 +88,7 @@
                     </div>
                 </div>
             </div>
+            </c:if>
 
             <!-- Pending Bookings Card -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -122,6 +126,7 @@
         </div>
 
         <!-- Daily Sales Report Table -->
+        <c:if test="${user.role != 'STAFF'}">
         <div class="table-responsive table-container mt-4">
             <h3>Daily Sales Report</h3>
             <table class="table table-bordered" width="100%" cellspacing="0">
@@ -143,6 +148,7 @@
                 </tbody>
             </table>
         </div>
+        </c:if>
     </div>
 
     <!-- Bootstrap & FontAwesome JS -->

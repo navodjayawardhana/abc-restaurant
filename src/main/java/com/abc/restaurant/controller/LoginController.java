@@ -20,23 +20,29 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        // Check if user credentials are valid
         if (userService.validateUser(email, password)) {
             HttpSession session = request.getSession();
             User user = userService.getUserByEmail(email);
 
+            // Set user details in session
             session.setAttribute("user", user);
 
             String role = user.getRole();
-            
-            if ("customer".equals(role)) {
 
+            // Redirect based on the user role
+            if ("customer".equalsIgnoreCase(role)) {
+                // If role is 'customer', redirect to checkout
                 response.sendRedirect("checkout");
-            } else {
-
+            } else if ("admin".equalsIgnoreCase(role) || "staff".equalsIgnoreCase(role)) {
+                // If role is 'admin' or 'staff', redirect to main dashboard
                 response.sendRedirect("main");
+            } else {
+                // Default behavior for any other roles, go to login fail page
+                response.sendRedirect("loginFail.jsp");
             }
         } else {
-
+            // Invalid login credentials, redirect to login fail page
             response.sendRedirect("loginFail.jsp");
         }
     }

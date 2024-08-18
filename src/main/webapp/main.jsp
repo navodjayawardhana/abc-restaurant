@@ -73,13 +73,15 @@
                     <span>Orders</span>
                 </a>
             </li>
-            
+            <c:if test="${user.role != 'STAFF'}">
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadPromotionList();">
 			        <i class="fas fa-fw fa-tag"></i>
 			        <span>Promotion</span>
 			    </a>
 			</li>
+			</c:if>
+			
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadRatingList();">
 			        <i class="fas fa-fw fa-star"></i>
@@ -94,6 +96,7 @@
 			        <span>Booking</span>
 			    </a>
 			</li>
+			<c:if test="${user.role != 'STAFF'}">
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadHeadList();">
 			        <i class="fas fa-heading"></i>
@@ -119,7 +122,7 @@
 			</li>
 
 			
-			<c:if test="${user.role != 'STAFF'}">
+			
             <!-- Nav Item - Branch -->
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadBranchList();">
