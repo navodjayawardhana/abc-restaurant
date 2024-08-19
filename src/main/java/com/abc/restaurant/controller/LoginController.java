@@ -39,11 +39,11 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("main");
             } else {
                 // Default behavior for any other roles, go to login fail page
-                response.sendRedirect("loginFail.jsp");
+                response.sendRedirect("login.jsp");
             }
         } else {
             // Invalid login credentials, redirect to login fail page
-            response.sendRedirect("loginFail.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 }
