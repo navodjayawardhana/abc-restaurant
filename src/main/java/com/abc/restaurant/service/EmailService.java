@@ -7,17 +7,17 @@ import java.util.Properties;
 public class EmailService {
 
     public static void sendEmail(String to, String subject, String body) {
-        String from = "abcrest39@gmail.com";  // Your email
-        String host = "smtp.gmail.com";  // Gmail SMTP server
+        String from = "abcrest39@gmail.com"; 
+        String host = "smtp.gmail.com";  
 
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "587"); // TLS port
-        properties.put("mail.smtp.auth", "true");  // Enable authentication
-        properties.put("mail.smtp.starttls.enable", "true");  // Enable TLS
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true"); 
+        properties.put("mail.smtp.starttls.enable", "true"); 
 
-        String username = "abcrest39@gmail.com";  // Gmail username
-        String password = "qlszgczchqwnamyh";  // Gmail app-specific password
+        String username = "abcrest39@gmail.com"; 
+        String password = "qlszgczchqwnamyh";  
 
         // Get the session object
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -27,18 +27,18 @@ public class EmailService {
         });
 
         try {
-            // Create a MimeMessage object
+           
             MimeMessage message = new MimeMessage(session);
 
-            // Set the From, To, Subject fields
+           
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(subject);
 
-            // Set the email content in HTML format
+           
             message.setContent(body, "text/html");
 
-            // Send the email
+           
             Transport.send(message);
             System.out.println("Email sent successfully to " + to);
         } catch (MessagingException mex) {
@@ -46,11 +46,11 @@ public class EmailService {
         }
     }
 
-    // Method to send the order confirmation with a bill
+  
     public static void sendOrderBillEmail(String customerEmail, String customerName, String orderDetails, double totalPrice) {
         String subject = "Your Order Bill - ABC Restaurant";
 
-        // HTML content for the email
+        
         String body = "<html>" +
                 "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
                 "<div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>" +
@@ -69,7 +69,7 @@ public class EmailService {
                 "</body>" +
                 "</html>";
 
-        // Send the email
+       
         sendEmail(customerEmail, subject, body);
     }
     
@@ -77,7 +77,7 @@ public class EmailService {
     public static void sendOrderCompletionEmail(String customerEmail, String customerName, int orderId) {
         String subject = "Your Order is Complete - ABC Restaurant";
 
-        // HTML content for the order completion email with a rating link
+       
         String body = "<html>" +
                 "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
                 "<div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>" +
@@ -94,7 +94,7 @@ public class EmailService {
                 "</body>" +
                 "</html>";
 
-        // Send the email
+      
         sendEmail(customerEmail, subject, body);
     }
 

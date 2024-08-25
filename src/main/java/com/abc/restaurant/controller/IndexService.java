@@ -53,8 +53,8 @@ public class IndexService extends HttpServlet {
             List<Head> heads = headService.getAllHeads();
             request.setAttribute("heads", heads);
             
-            List<Rating> ratings = ratingService.getAllRatings(); // Fetch all ratings
-            request.setAttribute("ratings", ratings); // Add ratings to request
+            List<Rating> ratings = ratingService.getAllRatings(); 
+            request.setAttribute("ratings", ratings); 
             
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (SQLException e) {

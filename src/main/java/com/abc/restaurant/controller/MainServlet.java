@@ -31,23 +31,23 @@ public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Calculate total earnings
+            
             BigDecimal totalEarnings = orderServiceview.calculateTotalEarnings();
             request.setAttribute("totalEarnings", totalEarnings);
 
-            // Get the count of pending orders
+          
             int pendingOrderCount = orderServiceview.getPendingOrderCount();
             request.setAttribute("pendingOrderCount", pendingOrderCount);
 
-            // Get the total number of branches
+           
             int totalBranchCount = branchDAO.getTotalBranch();
             request.setAttribute("totalBranchCount", totalBranchCount); 
             
-            // Get the count of pending bookings
+          
             int pendingBookingCount = bookingDAO.getPendingBookingCount();
             request.setAttribute("pendingBookingCount", pendingBookingCount);
 
-            // Fetch daily sales data
+           
             List<DailySales> dailySales = orderServiceview.getDailySalesData();
             request.setAttribute("dailySales", dailySales);
 

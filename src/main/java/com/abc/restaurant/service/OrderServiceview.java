@@ -34,7 +34,7 @@ public class OrderServiceview {
     }
     
     public BigDecimal calculateTotalEarnings() throws SQLException {
-        return orderDAO.getTotalEarnings(); // This method will get the sum of all order item prices
+        return orderDAO.getTotalEarnings(); 
     }
 
     public int getPendingOrderCount() throws SQLException {

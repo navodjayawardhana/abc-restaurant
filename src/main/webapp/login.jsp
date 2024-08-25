@@ -9,25 +9,51 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #fff3cd;
             height: 100vh;
         }
         .login-container {
-            margin-top: 100px;
-            max-width: 400px;
-            padding: 20px;
+            margin-top: 50px;
+            max-width: 550px;
+            padding: 40px;
             background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         .login-heading {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
+            color: #856404;
         }
-        .alert-custom {
-            margin-top: 20px;
+        .form-control:focus {
+            border-color: #ffc107;
+            box-shadow: none;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .btn-social {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .remember-me {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .password-toggle {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -35,17 +61,17 @@
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="login-container">
-        <h2 class="login-heading">Welcome Back!</h2>
-        
-        <!-- Display messages (e.g., login errors or success messages) -->
+        <h2 class="login-heading">Login to Your Account</h2>
+
+      
         <c:if test="${not empty message}">
             <div class="alert alert-${messageType} alert-dismissible fade show" role="alert">
                 ${message}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>
-        
-        <!-- Login Form -->
+
+
         <form action="login" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
@@ -53,21 +79,50 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    <span class="input-group-text password-toggle" onclick="togglePassword()">👁</span>
+                </div>
             </div>
+            
+         
+            <div class="remember-me mb-3">
+                <div>
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe" class="form-check-label">Remember me</label>
+                </div>
+                <a href="#" class="text-muted">Forgot password?</a>
+            </div>
+
+       
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
             </div>
         </form>
 
-        <!-- Optional link for password recovery or signup -->
+
+        <div class="text-center my-4">
+            <span>OR</span>
+        </div>
+
+     
         <div class="mt-3 text-center">
-            <a href="#" class="text-muted">Forgot password?</a> | 
-            <a href="#" class="text-muted">Sign up</a>
+            <p>Don't have an account? <a href="register.jsp" class="text-muted">Sign up here</a></p>
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle Password Visibility
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
 </body>
 </html>

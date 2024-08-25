@@ -56,11 +56,11 @@
                                 <form action="bookings" method="post">
                                     <input type="hidden" name="id" value="${booking.id}">
                                     
-                                    <!-- Disable Approve button if status is "Approved" -->
+                                   
                                     <button type="submit" name="action" value="approve" class="btn btn-success" 
                                             <c:if test="${booking.status == 'Approved'}">disabled</c:if>>Approve</button>
                                     
-                                    <!-- Disable Reject button if status is "Rejected" -->
+                                   
                                     <button type="submit" name="action" value="reject" class="btn btn-danger" 
                                             <c:if test="${booking.status == 'Rejected'}">disabled</c:if>>Reject</button>
                                 </form>

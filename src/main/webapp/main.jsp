@@ -51,14 +51,14 @@
             </a>
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+          
             <li class="nav-item active">
                 <a class="nav-link" href="#" onclick="loadDashbord();">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Nav Item - Product -->
+          
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadProductList();">
                     <i class="fas fa-fw fa-table"></i>
@@ -66,7 +66,7 @@
                 </a>
             </li>
             
-            <!-- Nav Item - Orders -->
+         
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadOrderList();">
                     <i class="fas fa-fw fa-receipt"></i>

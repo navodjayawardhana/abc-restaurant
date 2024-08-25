@@ -27,7 +27,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
     private BranchService branchService;
     private ProductService productService;
     private BookingService bookingService;
-    private UserService userService;  // Add UserService
+    private UserService userService; 
     private UserViewDao userViewDao;
     private OrderServiceview orderServiceview;
 
@@ -59,13 +59,13 @@ public class GeneratePdfReportServlet extends HttpServlet {
                     break;
                 case "order":
                     if (orderId != null) {
-                        generateOrderPdf(response, Integer.parseInt(orderId));  // Generates order report
+                        generateOrderPdf(response, Integer.parseInt(orderId)); 
                     } else {
                         response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Order ID is required.");
                     }
                     break;
                 case "incomeStatement":
-                    generateIncomeReport(response);  // Generate income statement
+                    generateIncomeReport(response); 
                     break;
                 default:
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid report type.");
@@ -163,7 +163,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
         try {
             List<Booking> bookings = bookingService.getAllBookings();
 
-            // Separate the bookings based on their status
+         
             List<Booking> approvedBookings = bookings.stream()
                     .filter(booking -> "Approved".equalsIgnoreCase(booking.getStatus()))
                     .collect(Collectors.toList());
@@ -268,31 +268,31 @@ public class GeneratePdfReportServlet extends HttpServlet {
     }
     
     
- // New method to generate the Order PDF
+ 
     private void generateOrderPdf(HttpServletResponse response, int orderId) throws ServletException, IOException {
         try {
-            // Fetch order and order items
+           
             Order order = orderServiceview.getOrder(orderId);
             List<OrderItem> orderItems = orderServiceview.getOrderItems(orderId);
 
-            // Set the response to PDF type
+          
             response.setContentType("application/pdf");
             response.setHeader("Content-Disposition", "attachment; filename=order_" + orderId + "_report.pdf");
 
-            // Prepare the PDF document
+          
             Document document = new Document();
             OutputStream out = response.getOutputStream();
             PdfWriter writer = PdfWriter.getInstance(document, out);
             document.open();
 
-            // Add header and order details
+         
             addOrderDetailsHeader(document, "Order Details Report", order);
             addOrderDetails(document, order);
 
-            // Add the table for order items
+          
             addOrderItemsTable(document, orderItems);
 
-            // Add total price
+           
             addOrderTotal(document, orderItems);
 
             document.close();
@@ -302,7 +302,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
         }
     }
 
-    // Method to add order details header
+  
     private void addOrderDetailsHeader(Document document, String title, Order order) throws DocumentException {
         Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24, BaseColor.BLACK);
         Paragraph header = new Paragraph(title, titleFont);
@@ -311,7 +311,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
         document.add(Chunk.NEWLINE);
     }
 
-    // Method to add order details
+   
     private void addOrderDetails(Document document, Order order) throws DocumentException {
         Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
         document.add(new Paragraph("Order ID: " + order.getId(), font));
@@ -325,9 +325,9 @@ public class GeneratePdfReportServlet extends HttpServlet {
         document.add(Chunk.NEWLINE);
     }
 
-    // Method to add a table for order items
+   
     private void addOrderItemsTable(Document document, List<OrderItem> orderItems) throws DocumentException {
-        PdfPTable table = new PdfPTable(3);  // 3 columns: Product, Quantity, Price
+        PdfPTable table = new PdfPTable(3); 
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
 
@@ -347,7 +347,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
         document.add(table);
     }
 
-    // Method to calculate and display the total order price
+  
     private void addOrderTotal(Document document, List<OrderItem> orderItems) throws DocumentException {
         BigDecimal totalPrice = BigDecimal.ZERO;
 
@@ -363,31 +363,31 @@ public class GeneratePdfReportServlet extends HttpServlet {
 
     private void generateIncomeReport(HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Fetch all orders with total prices and quantities
+           
             List<Order> orders = orderServiceview.getAllOrdersWithTotalPrice();
 
-            // Initialize the total revenue variable
+            
             BigDecimal totalRevenue = BigDecimal.ZERO;
 
-            // Set the response to PDF type
+          
             response.setContentType("application/pdf");
             response.setHeader("Content-Disposition", "attachment; filename=income_report.pdf");
 
-            // Prepare the PDF document
+            
             Document document = new Document();
             OutputStream out = response.getOutputStream();
             PdfWriter writer = PdfWriter.getInstance(document, out);
             document.open();
 
-            // Add header
+           
             addHeader(document, writer, "Income Report");
 
-            // Add a table for the orders
-            PdfPTable table = new PdfPTable(5);  // 5 columns: Order ID, Customer Name, Date, Quantity, Total Price
+           
+            PdfPTable table = new PdfPTable(5);  
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
 
-            // Add table headers
+           
             PdfPCell cell = new PdfPCell(new Phrase("Order ID"));
             table.addCell(cell);
             cell = new PdfPCell(new Phrase("Customer Name"));
@@ -399,25 +399,25 @@ public class GeneratePdfReportServlet extends HttpServlet {
             cell = new PdfPCell(new Phrase("Total Price"));
             table.addCell(cell);
 
-            // Iterate through orders and calculate total revenue
+          
             for (Order order : orders) {
-                BigDecimal orderTotal = order.getTotalPrice().multiply(new BigDecimal(order.getTotalQuantity())); // Calculate per-order revenue (Quantity * Total Price)
+                BigDecimal orderTotal = order.getTotalPrice().multiply(new BigDecimal(order.getTotalQuantity())); 
 
                 table.addCell(String.valueOf(order.getId()));
                 table.addCell(order.getName());
                 table.addCell(order.getCreatedAt().toString());
-                table.addCell(String.valueOf(order.getTotalQuantity()));  // Add quantity
-                table.addCell(orderTotal.toString());  // Per-order revenue
+                table.addCell(String.valueOf(order.getTotalQuantity()));  
+                table.addCell(orderTotal.toString());  
 
-                // Accumulate the total revenue across all orders
+            
                 totalRevenue = totalRevenue.add(orderTotal);
             }
 
             document.add(table);
 
-            // Add total revenue at the bottom
+       
             Font totalFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
-            Paragraph total = new Paragraph("Total Revenue: $" + totalRevenue.toString(), totalFont);
+            Paragraph total = new Paragraph("Total Revenue: LKR" + totalRevenue.toString(), totalFont);
             total.setAlignment(Element.ALIGN_RIGHT);
             document.add(total);
 

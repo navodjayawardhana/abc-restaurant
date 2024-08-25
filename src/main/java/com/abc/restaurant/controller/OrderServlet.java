@@ -19,7 +19,7 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     public void init() {
-        orderServiceview = new OrderServiceview(); // Initialize the service that handles orders
+        orderServiceview = new OrderServiceview(); 
     }
 
     @Override
@@ -72,32 +72,32 @@ public class OrderServlet extends HttpServlet {
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         
         try {
-            // Mark the order as completed
+            
             orderServiceview.markOrderAsComplete(orderId);
 
-            // Fetch order details
+           
             Order order = orderServiceview.getOrder(orderId);
 
             if (order != null) {
                 String customerEmail = order.getEmail();
                 String customerName = order.getName();
                 
-                // Send order completion email
+               
                 EmailService.sendOrderCompletionEmail(customerEmail, customerName, orderId);
 
-                // Set success message in the session
+             
                 HttpSession session = request.getSession();
                 session.setAttribute("message", "Order completed successfully and email sent to the customer!");
                 session.setAttribute("messageType", "success");
                 
-                // Redirect to the order list with a success message
+              
                 response.sendRedirect("main");
             } else {
-                // Handle the case where the order does not exist
+                
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Order not found");
             }
         } catch (Exception e) {
-            // Handle any errors, log the error, and return a user-friendly error message
+           
             e.printStackTrace();
             HttpSession session = request.getSession();
             session.setAttribute("message", "An error occurred while completing the order.");

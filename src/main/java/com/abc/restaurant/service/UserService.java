@@ -45,10 +45,10 @@ public class UserService {
             mail.setSmtpPort(465);
             mail.setAuthenticator(new DefaultAuthenticator("abcrest39@gmail.com", "qlszgczchqwnamyh"));
             mail.setSSLOnConnect(true);
-            mail.setFrom("abcrest39@gmail.com", "ABC Restaurant"); // Use the actual sender email
+            mail.setFrom("abcrest39@gmail.com", "ABC Restaurant"); 
             mail.setSubject("Activate Your Account");
 
-            // Create the HTML content with inline CSS for beautiful design
+           
             String htmlMessage = "<html>" +
                 "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
                 "<div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>" +
