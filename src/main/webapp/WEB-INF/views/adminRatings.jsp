@@ -71,7 +71,7 @@
         </nav>
     </div>
 
-    <!-- Delete Rating Modal -->
+    
     <div class="modal fade" id="deleteRatingModal" tabindex="-1" aria-labelledby="deleteRatingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -139,7 +139,7 @@
                 renderTableRows();
             });
 
-            // Delete button click event
+           
             $('.delete-btn').click(function() {
                 var ratingId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', ratingId);

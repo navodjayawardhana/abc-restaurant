@@ -23,10 +23,9 @@
     <%@ include file="navbar.jsp" %>
   </div>
 
-  <!-- Checkout Section -->
+ 
   <div class="container mt-5">
     <div class="row">
-        <!-- Left Section: Billing Information -->
         <div class="col-md-6">
             <h4>Billing Information</h4>
             <form action="checkout" method="post" id="checkoutForm">
@@ -43,7 +42,6 @@
                     <textarea class="form-control" id="address" name="address" required></textarea>
                 </div>
                 
-                <!-- Branch Dropdown -->
                 <div class="mb-3">
                     <label for="branch" class="form-label">Select Branch</label>
                     <select class="form-select" id="branch" name="branch">
@@ -53,7 +51,7 @@
                     </select>
                 </div>
 
-                <!-- Take Away or Dining Option -->
+               
                 <div class="mb-3">
                     <label for="orderType" class="form-label">Order Type</label>
                     <div class="form-check">
@@ -73,16 +71,14 @@
             </form>
         </div>
 
-        <!-- Right Section: Summary -->
+       
         <div class="col-md-6">
             <div class="card p-4 bg-light">
                 <h5 class="card-title">Summary</h5>
                 <ul class="list-group">
                     <c:set var="totalPrice" value="0" />
                     <c:forEach var="item" items="${cart}">
-                        <!-- Calculate total for each item -->
-                        <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
-                        <!-- Add item total to totalPrice -->
+                         <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
                         <c:set var="totalPrice" value="${totalPrice + itemTotal}" />
                         <li class="list-group-item d-flex justify-content-between">
                             ${item.product.name} (x${item.quantity})
@@ -139,20 +135,20 @@
   
   <script>
     $(document).ready(function() {
-        // Show the payment modal when "Place Order" is clicked
+       
         $('#placeOrderBtn').click(function() {
             $('#paymentModal').modal('show');
         });
 
        
 
-        // Handle cash payment option
+       
         $('#cashPaymentBtn').click(function() {
             $('#paymentMethod').val('Cash');
             $('#checkoutForm').submit();
         });
 
-        // Handle pay later option
+       
         $('#payLaterBtn').click(function() {
             $('#paymentMethod').val('Pay Later');
             $('#checkoutForm').submit();
@@ -163,12 +159,12 @@
 
   <script>
     $(document).ready(function() {
-        // Always show the modal when the page is loaded or refreshed
+        
         $('#loginOrGuestModal').modal('show');
 
-        // Handle guest checkout
+        
         $('#guestCheckoutBtn').click(function() {
-            // Close modal and allow the form to be submitted
+          
             $('#loginOrGuestModal').modal('hide');
         });
     });

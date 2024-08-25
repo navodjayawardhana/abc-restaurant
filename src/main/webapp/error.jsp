@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Error - ABC Restaurant</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -32,7 +31,7 @@
             <div class="col-md-6">
                 <div class="error-message">
                     <div class="error-icon">
-                        <i class="bi bi-exclamation-triangle-fill"></i> <!-- Bootstrap error icon -->
+                        <i class="bi bi-exclamation-triangle-fill"></i> 
                     </div>
                     <h1 class="display-4">Oops!</h1>
                     <p class="lead">Something went wrong.</p>
@@ -43,7 +42,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

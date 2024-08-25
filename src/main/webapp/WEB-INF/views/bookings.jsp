@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +27,9 @@
                 <input type="text" id="searchInput" class="form-control" placeholder="Search by Name...">
             </div>
         </div>
-         <div class="row mb-3">
-			    <a href="generatePdfReport?report=booking" class="btn btn-primary ml-3">Download PDF Report</a>
-		 </div>
+        <div class="row mb-3">
+            <a href="generatePdfReport?report=booking" class="btn btn-primary ml-3">Download PDF Report</a>
+        </div>
 
         <div class="table-responsive table-container">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -38,7 +39,11 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Persons</th>
-                        <th>Date</th>
+                        <th>
+                            Date 
+                            <a href="#" id="sortAsc" style="text-decoration:none;">&#9650;</a>
+                            <a href="#" id="sortDesc" style="text-decoration:none;">&#9660;</a>
+                        </th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -50,17 +55,13 @@
                             <td>${booking.userEmail}</td>
                             <td>${booking.phoneNumber}</td>
                             <td>${booking.numPersons}</td>
-                            <td>${booking.bookingDate}</td>
+                            <td>${fn:substring(booking.bookingDate, 0, 10)}</td>
                             <td>${booking.status}</td>
                             <td>
                                 <form action="bookings" method="post">
                                     <input type="hidden" name="id" value="${booking.id}">
-                                    
-                                   
                                     <button type="submit" name="action" value="approve" class="btn btn-success" 
                                             <c:if test="${booking.status == 'Approved'}">disabled</c:if>>Approve</button>
-                                    
-                                   
                                     <button type="submit" name="action" value="reject" class="btn btn-danger" 
                                             <c:if test="${booking.status == 'Rejected'}">disabled</c:if>>Reject</button>
                                 </form>
@@ -135,6 +136,38 @@
                 });
                 currentPage = 1;
                 renderTableRows();
+            });
+
+            function sortTable(order) {
+                var rows = $('#dataTable tbody tr').get();
+
+                rows.sort(function(a, b) {
+                    var keyA = new Date($(a).find('td:eq(4)').text());
+                    var keyB = new Date($(b).find('td:eq(4)').text());
+
+                    if (order === 'asc') {
+                        return keyA - keyB;
+                    } else {
+                        return keyB - keyA;
+                    }
+                });
+
+                $.each(rows, function(index, row) {
+                    $('#dataTable tbody').append(row);
+                });
+
+                currentPage = 1;
+                renderTableRows();
+            }
+
+            $('#sortAsc').click(function(e) {
+                e.preventDefault();
+                sortTable('asc');
+            });
+
+            $('#sortDesc').click(function(e) {
+                e.preventDefault();
+                sortTable('desc');
             });
 
             renderTableRows();

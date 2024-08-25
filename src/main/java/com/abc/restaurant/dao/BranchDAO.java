@@ -92,14 +92,14 @@ public class BranchDAO {
     }
 
     public int getTotalBranch() throws SQLException {
-        String sql = "SELECT COUNT(*) AS total FROM branches"; // Correct column alias
+        String sql = "SELECT COUNT(*) AS total FROM branches"; 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             if (resultSet.next()) {
-                return resultSet.getInt("total"); // Use the alias "total" instead of "total_count"
+                return resultSet.getInt("total"); 
             }
         }
-        return 0; // Return 0 if no branches are found
+        return 0; 
     }
 
 }

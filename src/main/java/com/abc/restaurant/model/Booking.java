@@ -9,10 +9,10 @@ public class Booking {
     private String bookingDate;
     private String status;
 
-    // Default constructor
+  
     public Booking() {}
 
-    // Constructor with all fields
+   
     public Booking(int id, String userName, String userEmail, String phoneNumber, int numPersons, String bookingDate, String status) {
         this.id = id;
         this.userName = userName;
@@ -23,7 +23,7 @@ public class Booking {
         this.status = status;
     }
 
-    // Getters and setters for all fields
+   
 
     public int getId() {
         return id;

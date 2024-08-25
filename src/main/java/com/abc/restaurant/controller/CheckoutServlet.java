@@ -58,7 +58,7 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");  // Assuming user is stored in session
+        User user = (User) session.getAttribute("user"); 
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
         String name = request.getParameter("name");
@@ -66,14 +66,14 @@ public class CheckoutServlet extends HttpServlet {
         String address = request.getParameter("address");
         String branchId = request.getParameter("branch");
         String orderType = request.getParameter("orderType");
-        String paymentMethod = request.getParameter("paymentMethod"); // Payment Method
+        String paymentMethod = request.getParameter("paymentMethod"); 
 
-        // Calculate total price
+       
         double totalPrice = 0.0;
-        StringBuilder orderDetails = new StringBuilder(); // Create HTML table rows for order details
+        StringBuilder orderDetails = new StringBuilder();
         for (CartItem item : cart) {
             totalPrice += item.getTotalPrice();
-            // Append each item's details to the orderDetails StringBuilder
+           
             orderDetails.append("<tr>")
                 .append("<td style='padding: 8px; border-bottom: 1px solid #ddd;'>")
                 .append(item.getProduct().getName())
@@ -84,27 +84,27 @@ public class CheckoutServlet extends HttpServlet {
         }
 
         try {
-            // Create the order in the database and get the order ID
+           
             int orderId = orderService.createOrder(name, email, address, Integer.parseInt(branchId), orderType, paymentMethod, totalPrice);
 
-            // Add order items to the order
+            
             for (CartItem item : cart) {
                 orderService.addOrderItem(orderId, item.getProduct().getName(), item.getQuantity(), item.getTotalPrice());
             }
 
-            // Debugging line to confirm email process is triggered
+          
             System.out.println("Sending order confirmation email to " + email);
 
-            // Send the order confirmation email with the detailed bill
+          
             EmailService.sendOrderBillEmail(email, name, orderDetails.toString(), totalPrice);
 
-            // Debugging line after email sending
+           
             System.out.println("Order confirmation email sent successfully.");
 
-            // Clear the cart after the order is placed
+            
             session.removeAttribute("cart");
 
-            // Redirect to success page
+        
             response.sendRedirect("orderSuccess.jsp");
         } catch (SQLException e) {
             e.printStackTrace();

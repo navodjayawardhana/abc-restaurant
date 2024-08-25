@@ -19,7 +19,7 @@ public class EmailService {
         String username = "abcrest39@gmail.com"; 
         String password = "qlszgczchqwnamyh";  
 
-        // Get the session object
+     
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);

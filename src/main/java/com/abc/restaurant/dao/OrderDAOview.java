@@ -13,10 +13,10 @@ public class OrderDAOview {
     private Connection connection;
 
     public OrderDAOview() {
-        this.connection = DatabaseConnection.getConnection(); // Assume you have a connection manager
+        this.connection = DatabaseConnection.getConnection(); 
     }
 
-    // Fetch all orders from the 'orders' table
+    
     public List<Order> getAllOrders() throws SQLException {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM orders";
@@ -25,7 +25,7 @@ public class OrderDAOview {
 
         while (rs.next()) {
             orders.add(new Order(
-                rs.getInt("id"),  // Fetch 'id' instead of 'order_id'
+                rs.getInt("id"), 
                 rs.getString("customer_name"),
                 rs.getString("customer_email"),
                 rs.getString("address"),
@@ -49,7 +49,7 @@ public class OrderDAOview {
 
         while (rs.next()) {
             items.add(new OrderItem(
-                rs.getInt("id"),  // 'id' is the primary key for order_items
+                rs.getInt("id"), 
                 rs.getInt("order_id"),
                 rs.getString("product_name"),
                 rs.getInt("quantity"),
@@ -61,7 +61,7 @@ public class OrderDAOview {
 
     // Update order status in the 'orders' table
     public void updateOrderStatus(int orderId, String status) throws SQLException {
-        String query = "UPDATE orders SET status = ? WHERE id = ?";  // Use 'id' instead of 'order_id'
+        String query = "UPDATE orders SET status = ? WHERE id = ?"; 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, status);
         stmt.setInt(2, orderId);
@@ -70,14 +70,14 @@ public class OrderDAOview {
 
     // Fetch a single order by its ID
     public Order getOrderById(int orderId) throws SQLException {
-        String query = "SELECT * FROM orders WHERE id = ?";  // Use 'id' instead of 'order_id'
+        String query = "SELECT * FROM orders WHERE id = ?";  
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, orderId);
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
             return new Order(
-                rs.getInt("id"),  // Fetch 'id' instead of 'order_id'
+                rs.getInt("id"), 
                 rs.getString("customer_name"),
                 rs.getString("customer_email"),
                 rs.getString("address"),
@@ -149,7 +149,7 @@ public class OrderDAOview {
                 rs.getString("customer_name"),
                 rs.getTimestamp("created_at"),
                 rs.getBigDecimal("total_price"),
-                rs.getInt("total_quantity")  // New field for total quantity
+                rs.getInt("total_quantity")  
             );
             orders.add(order);
         }

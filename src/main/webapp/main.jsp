@@ -31,7 +31,7 @@
 
 <body id="page-top">
 
-    <!-- Message Display -->
+   
     <div class="container">
         <c:if test="${not empty sessionScope.message}">
             <div class="alert alert-${sessionScope.messageType} alert-dismissible fade show alert-popup" role="alert">
@@ -42,7 +42,7 @@
         </c:if>
     </div>
 
-    <!-- Page Wrapper -->
+   
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
@@ -89,7 +89,7 @@
 			    </a>
 			</li>
 						
-						<!-- Nav Item - Booking -->
+						
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadBookingList();">
 			        <i class="fas fa-fw fa-calendar"></i>
@@ -113,7 +113,7 @@
 			    </a>
 			</li>
 			
-			<!-- New Nav Item - Service -->
+			
 			<li class="nav-item">
 			    <a class="nav-link" href="#" onclick="loadServiceList();">
 			        <i class="fas fa-fw fa-concierge-bell"></i>
@@ -123,7 +123,7 @@
 
 			
 			
-            <!-- Nav Item - Branch -->
+           
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadBranchList();">
                     <i class="fas fa-fw fa-building"></i>
@@ -131,7 +131,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - User -->
+           
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadUserList();">
                     <i class="fas fa-fw fa-users"></i>
@@ -140,42 +140,40 @@
             </li>
             </c:if>
 
-            <!-- Divider -->
+         
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
+           
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
+        
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
+           
             <div id="content">
 
-                <!-- Topbar -->
+             
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
+                   
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Navbar -->
+               
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                       
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
                             </a>
-                            <!-- Dropdown - User Information -->
+                          
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <div class="dropdown-divider"></div>
@@ -189,17 +187,12 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
+              
                 <div class="container-fluid">
                 
-                <!-- Page Heading -->
-                    
-                    
+             
                     <div class="row">
-                        <!-- Dynamically include content based on the 'includePage' attribute -->
-                        <c:if test="${not empty includePage}">
+                       <c:if test="${not empty includePage}">
                             <jsp:include page="${includePage}" />
                         </c:if>
                           
@@ -211,22 +204,11 @@
                     </div>
                     
                     
-                    
-                    
-                
-               
-                
-                
-					                    <!-- Daily Sales Table -->
-					 
-				
-
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
+           
 
-            <!-- Footer -->
+        
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -234,20 +216,18 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
+           
 
         </div>
-        <!-- End of Content Wrapper -->
+        
 
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
+   
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+   
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -267,89 +247,79 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+    
     <script src="public/vendor/jquery/jquery.min.js"></script>
     <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
     <script src="public/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="public/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
     <script src="public/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
     <script src="public/js/demo/chart-area-demo.js"></script>
     <script src="public/js/demo/chart-pie-demo.js"></script>
-
-    <!-- Include Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
     <script>
         function loadProductList() {
             $.get("products?action=listProducts", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of ProductList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
 
         function loadBranchList() {
             $.get("branches?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BranchList.jsp
+                $('.container-fluid .row').html(data);
             });
         }
 
         function loadUserList() {
             $.get("users?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of UserList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
         
         function loadPromotionList() {
             $.get("promotions?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of PromotionList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
         function loadBookingList() {
             $.get("bookings?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
         
         function loadHeadList() {
             $.get("heads?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of BookingList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
 
-        // Load the order list in the dashboard content
+       
         function loadOrderList() {
             $.get("orders?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Load the content of the OrderList.jsp page
+                $('.container-fluid .row').html(data); 
             });
         }
         function loadRatingList() {
             $.get("adminratings?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of RatingList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
         
         function loadGalleryList() {
             $.get("galleryadmin?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of galleryList.jsp
+                $('.container-fluid .row').html(data); 
             });
         }
         function loadServiceList() {
             $.get("serviceadmin?action=list", function (data) {
-                $('.container-fluid .row').html(data); // Assuming the servlet returns the content of ServiceList.jsp
+                $('.container-fluid .row').html(data);
             });
         }
         
         function loadDashbord() {
             $.get("dashbord", function (data) {
-                $('.container-fluid .row').html(data); // This will load the dashboard content into the container
+                $('.container-fluid .row').html(data); 
             });
         }
 

@@ -24,16 +24,16 @@ public class RatingDAO {
 
     public List<Rating> getAllRatings() throws SQLException {
         List<Rating> ratings = new ArrayList<>();
-        // Modified query to join orders and users to get the customer_name
+      
         String sql = "SELECT r.id, r.order_id, r.rating, r.feedback, o.customer_name " +
                      "FROM ratings r " +
-                     "JOIN orders o ON r.order_id = o.id";  // Assuming there's an 'order_id' in the 'ratings' table
+                     "JOIN orders o ON r.order_id = o.id";  
         
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         while (rs.next()) {
-            String customerName = rs.getString("customer_name");  // Fetch customer_name
+            String customerName = rs.getString("customer_name"); 
             Rating rating = new Rating(rs.getInt("id"), rs.getInt("order_id"), rs.getInt("rating"), rs.getString("feedback"), customerName);
             ratings.add(rating);
         }

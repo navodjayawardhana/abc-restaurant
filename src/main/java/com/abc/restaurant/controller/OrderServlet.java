@@ -41,14 +41,14 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    // List orders
+ 
     private void listOrders(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Order> orders = orderServiceview.getAllOrders();
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("/WEB-INF/views/orderList.jsp").forward(request, response);
     }
 
-    // View order items
+   
     private void viewOrderItems(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         List<OrderItem> orderItems = orderServiceview.getOrderItems(orderId);
@@ -58,7 +58,7 @@ public class OrderServlet extends HttpServlet {
         response.getWriter().write(json);
     }
 
-    // View order details
+   
     private void viewOrderDetails(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         Order order = orderServiceview.getOrder(orderId);

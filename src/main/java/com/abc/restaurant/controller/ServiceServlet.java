@@ -30,7 +30,7 @@ public class ServiceServlet extends HttpServlet {
             request.setAttribute("services", services);
             request.getRequestDispatcher("WEB-INF/views/service.jsp").forward(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Unable to retrieve services", e); // Handle SQLException
+            throw new ServletException("Unable to retrieve services", e); 
         }
     }
 }

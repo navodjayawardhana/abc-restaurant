@@ -217,7 +217,7 @@
                 renderTableRows();
             });
 
-            // Edit button click event
+           
             $('.edit-btn').click(function() {
                 var branchId = $(this).data('id');
                 var branchName = $(this).data('name');
@@ -234,7 +234,7 @@
                 $('#editPassword').val(branchPassword);
             });
 
-            // Delete button click event
+           
             $('.delete-btn').click(function() {
                 var branchId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', branchId);

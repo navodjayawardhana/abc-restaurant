@@ -54,7 +54,7 @@
                         <th>Description</th>
                         <th>Price</th>
                         <th>Available</th>
-                        <th>Category</th> <!-- Add Category Column -->
+                        <th>Category</th> 
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -66,7 +66,7 @@
                             <td>${product.description}</td>
                             <td>${product.price}</td>
                             <td style="color: ${product.available ? 'green' : 'red'};">${product.available ? "Yes" : "No"}</td>
-                            <td>${product.category}</td> <!-- Display the Category -->
+                            <td>${product.category}</td> 
                             <td>
                                 <c:if test="${product.imagePath != null}">
                                     <img src="${pageContext.request.contextPath}/${product.imagePath}" alt="${product.name}" width="50">
@@ -271,7 +271,7 @@
                 renderTableRows();
             });
 
-            // Edit button click event
+          
             $('.edit-btn').click(function() {
                 var productId = $(this).data('id');
                 var productName = $(this).data('name');
@@ -296,7 +296,7 @@
                 }
             });
 
-            // Delete button click event
+           
             $('.delete-btn').click(function() {
                 var productId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', productId);

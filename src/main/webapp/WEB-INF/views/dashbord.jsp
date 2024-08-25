@@ -7,8 +7,7 @@
 <head>
     <meta charset="utf-8">
     <title>Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .card {
             border-radius: 10px;
@@ -41,7 +40,6 @@
 
 <body>
 
-    <!-- Dashboard Header with Generate Report Button -->
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -52,7 +50,6 @@
             </c:if>
         </div>
 
-        <!-- Dashboard Cards -->
         <div class="row">
             <c:if test="${user.role != 'STAFF'}">
             <div class="col-xl-3 col-md-6 mb-4">
@@ -72,7 +69,7 @@
             </div>
             
 
-            <!-- Branches Card -->
+            
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 py-2">
                     <div class="card-body">
@@ -90,7 +87,7 @@
             </div>
             </c:if>
 
-            <!-- Pending Bookings Card -->
+            
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -107,7 +104,7 @@
                 </div>
             </div>
 
-            <!-- Pending Orders Card -->
+           
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
@@ -125,7 +122,7 @@
             </div>
         </div>
 
-        <!-- Daily Sales Report Table -->
+       
         <c:if test="${user.role != 'STAFF'}">
         <div class="table-responsive table-container mt-4">
             <h3>Daily Sales Report</h3>
@@ -151,7 +148,7 @@
         </c:if>
     </div>
 
-    <!-- Bootstrap & FontAwesome JS -->
+   
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>

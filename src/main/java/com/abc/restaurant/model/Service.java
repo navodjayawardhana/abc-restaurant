@@ -14,7 +14,7 @@ public class Service {
         this.description = description;
     }
 
-    // Getters and setters
+    
     public int getId() {
         return id;
     }

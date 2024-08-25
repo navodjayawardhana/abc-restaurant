@@ -187,7 +187,7 @@
                 renderTableRows();
             });
 
-            // Edit button click event
+            
             $('.edit-btn').click(function() {
                 var headId = $(this).data('id');
                 var headTitle = $(this).data('title');
@@ -198,7 +198,7 @@
                 $('#editDescription').val(headDescription);
             });
 
-            // Delete button click event
+            
             $('.delete-btn').click(function() {
                 var headId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', headId);

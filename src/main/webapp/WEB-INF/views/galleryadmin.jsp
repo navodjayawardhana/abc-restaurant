@@ -14,9 +14,9 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1>Gallery</h1>
+       
 
-        <!-- Add New Gallery Image Button -->
+       
         <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addGalleryModal">Add New Image</button>
 
         <div class="table-responsive table-container">
@@ -36,10 +36,10 @@
                             <td>${gallery.name}</td>
                             <td><img src="${pageContext.request.contextPath}/${gallery.imagePath}" alt="${gallery.name}" width="100"></td>
                             <td>
-                                <!-- Edit Button -->
+                              
                                 <button class="btn btn-warning btn-sm edit-gallery-btn" data-id="${gallery.id}" data-name="${gallery.name}" data-image-path="${gallery.imagePath}" data-bs-toggle="modal" data-bs-target="#editGalleryModal">Edit</button>
 
-                                <!-- Delete Button -->
+                           
                                 <button class="btn btn-danger btn-sm delete-gallery-btn" data-id="${gallery.id}" data-bs-toggle="modal" data-bs-target="#deleteGalleryModal">Delete</button>
                             </td>
                         </tr>
@@ -123,14 +123,14 @@
         </div>
     </div>
 
-    <!-- jQuery and Bootstrap JavaScript -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
     $(document).ready(function() {
-        // Edit button click event to populate modal fields
+       
         $('.edit-gallery-btn').click(function() {
             var galleryId = $(this).data('id');
             var galleryName = $(this).data('name');
@@ -141,7 +141,7 @@
             $('#editGalleryCurrentImage').attr('src', galleryImagePath);
         });
 
-        // Delete button click event to set the ID
+       
         $('.delete-gallery-btn').click(function() {
             var galleryId = $(this).data('id');
             $('#deleteGalleryId').val(galleryId);

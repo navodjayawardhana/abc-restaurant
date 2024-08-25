@@ -13,7 +13,7 @@ public class DailySales {
         this.totalIncome = totalIncome;
     }
 
-    // Getters and Setters
+   
     public String getOrderDate() {
         return orderDate;
     }

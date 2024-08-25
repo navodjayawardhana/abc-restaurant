@@ -49,7 +49,7 @@
                             <td>${user.role}</td>
                             <td>${user.active ? "Active" : "Inactive"}</td>
                             <td>
-                                <!-- Hide Edit button if role is Customer -->
+                               
                                 <c:if test="${user.role != 'CUSTOMER'}">
                                     <button class="btn btn-success btn-sm edit-btn" 
                                         data-id="${user.id}" 

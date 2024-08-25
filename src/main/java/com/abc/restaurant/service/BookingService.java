@@ -79,18 +79,18 @@ public class BookingService {
         bookingDAO.deleteBooking(id);
     }
 
-    // Send an email with HTML content and colors
+   
     private void sendEmail(String to, String subject, String content) {
-        String from = "abcrest39@gmail.com"; // Your Gmail
-        String host = "smtp.gmail.com"; // Gmail SMTP server
+        String from = "abcrest39@gmail.com"; 
+        String host = "smtp.gmail.com"; 
 
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");
-        properties.put("mail.smtp.ssl.enable", "true"); // SSL must be enabled for port 465
+        properties.put("mail.smtp.ssl.enable", "true"); 
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object and pass username and password
+        
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("abcrest39@gmail.com", "qlszgczchqwnamyh"); // Replace with your actual email and app password
@@ -98,30 +98,30 @@ public class BookingService {
         });
 
         try {
-            // Create a default MimeMessage object
+          
             MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field
+           
             message.setFrom(new InternetAddress(from));
 
-            // Set To: header field
+           
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            // Set Subject: header field
+           
             message.setSubject(subject);
 
-            // Create the HTML part of the email
+           
             MimeBodyPart htmlPart = new MimeBodyPart();
             htmlPart.setContent(content, "text/html");
 
-            // Create multipart message
+           
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(htmlPart);
 
-            // Set the multipart content to the message
+           
             message.setContent(multipart);
 
-            // Send message
+            
             Transport.send(message);
             System.out.println("Email sent successfully to " + to);
         } catch (MessagingException mex) {

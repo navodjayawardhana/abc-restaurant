@@ -49,13 +49,13 @@
       <h2 class="service-title">Our Services</h2>
     </div>
 
-    <!-- Loop through the services from the backend -->
+   
     <c:forEach var="service" items="${services}">
       <div class="col-md-4">
         <div class="service-item text-center">
-          <i class="fa fa-cutlery fa-3x"></i> <!-- You can change icons dynamically if needed -->
-          <h5>${service.title}</h5> <!-- Dynamically display the service title -->
-          <p>${service.description}</p> <!-- Dynamically display the service description -->
+          <i class="fa fa-cutlery fa-3x"></i> 
+          <h5>${service.title}</h5> 
+          <p>${service.description}</p> 
         </div>
       </div>
     </c:forEach>

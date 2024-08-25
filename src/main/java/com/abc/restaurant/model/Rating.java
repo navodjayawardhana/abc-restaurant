@@ -1,7 +1,7 @@
 package com.abc.restaurant.model;
 
 public class Rating {
-    private int id;  // Add this field if it's missing
+    private int id;  
     private int orderId;
     private int rating;
     private String feedback;
@@ -14,13 +14,13 @@ public class Rating {
         this.feedback = feedback;
         this.username = username;
     }
-    // Constructor to be used when saving a new rating (without id)
+    
     public Rating(int orderId, int rating, String feedback) {
         this.orderId = orderId;
         this.rating = rating;
         this.feedback = feedback;
     }
-    // Getters and Setters for all fields
+   
 
     public int getId() {
         return id;
