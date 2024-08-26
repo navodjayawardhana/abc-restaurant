@@ -17,6 +17,7 @@
             justify-content: center;
         }
     </style>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,9 +38,10 @@
             
         </div>
         <div class="row mb-3">
-			    <a href="generatePdfReport?report=product" class="btn btn-primary">Download PDF Report</a>
-			    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</a>
-		</div>
+    <a href="generatePdfReport?report=product" class="btn btn-primary ml-3">Download PDF Report</a> <!-- Add margin-end (me-2) for spacing -->
+    <a class="btn btn-success ml-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</a>
+</div>
+
 	
 
         
@@ -52,7 +54,7 @@
                         <th>Description</th>
                         <th>Price</th>
                         <th>Available</th>
-                        <th>Category</th> <!-- Add Category Column -->
+                        <th>Category</th> 
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -64,7 +66,7 @@
                             <td>${product.description}</td>
                             <td>${product.price}</td>
                             <td style="color: ${product.available ? 'green' : 'red'};">${product.available ? "Yes" : "No"}</td>
-                            <td>${product.category}</td> <!-- Display the Category -->
+                            <td>${product.category}</td> 
                             <td>
                                 <c:if test="${product.imagePath != null}">
                                     <img src="${pageContext.request.contextPath}/${product.imagePath}" alt="${product.name}" width="50">
@@ -269,7 +271,7 @@
                 renderTableRows();
             });
 
-            // Edit button click event
+          
             $('.edit-btn').click(function() {
                 var productId = $(this).data('id');
                 var productName = $(this).data('name');
@@ -294,7 +296,7 @@
                 }
             });
 
-            // Delete button click event
+           
             $('.delete-btn').click(function() {
                 var productId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', productId);

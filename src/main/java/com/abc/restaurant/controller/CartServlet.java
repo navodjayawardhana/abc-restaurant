@@ -36,7 +36,7 @@ public class CartServlet extends HttpServlet {
 
         String previousPage = request.getParameter("previousPage");
         if (previousPage == null || previousPage.isEmpty()) {
-            previousPage = request.getHeader("Referer"); // Default to referer if not provided
+            previousPage = request.getHeader("Referer"); 
         }
 
         switch (action) {
@@ -72,7 +72,7 @@ public class CartServlet extends HttpServlet {
             Product product = productService.getProduct(productId);
             HttpSession session = request.getSession();
             cartService.addToCart(product, quantity, session);
-            response.sendRedirect(previousPage != null ? previousPage : "menu"); // Redirect back to the previous page
+            response.sendRedirect(previousPage != null ? previousPage : "menu"); 
         } catch (SQLException e) {
             throw new ServletException("Cannot add product to cart", e);
         }
@@ -102,13 +102,13 @@ public class CartServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         cartService.updateCart(productId, quantity, session);
-        response.sendRedirect(previousPage != null ? previousPage : "menu"); // Redirect back to the previous page
+        response.sendRedirect(previousPage != null ? previousPage : "menu"); 
     }
 
     private void removeFromCart(HttpServletRequest request, HttpServletResponse response, String previousPage) throws IOException {
         int productId = Integer.parseInt(request.getParameter("productId"));
         HttpSession session = request.getSession();
         cartService.removeFromCart(productId, session);
-        response.sendRedirect(previousPage != null ? previousPage : "menu"); // Redirect back to the previous page
+        response.sendRedirect(previousPage != null ? previousPage : "menu"); 
     }
 }

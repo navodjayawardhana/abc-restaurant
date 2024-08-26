@@ -16,6 +16,7 @@
             justify-content: center;
         }
     </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -186,7 +187,7 @@
                 renderTableRows();
             });
 
-            // Edit button click event
+            
             $('.edit-btn').click(function() {
                 var headId = $(this).data('id');
                 var headTitle = $(this).data('title');
@@ -197,7 +198,7 @@
                 $('#editDescription').val(headDescription);
             });
 
-            // Delete button click event
+            
             $('.delete-btn').click(function() {
                 var headId = $(this).data('id');
                 $('#confirmDeleteButton').data('id', headId);

@@ -5,12 +5,9 @@
 <html lang="en">
 
 <head>
-  <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
@@ -18,25 +15,18 @@
 
   <title> ABC Restaurant </title>
 
-  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
-  <!-- Owl slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   
-  <!-- Nice select CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   
-  <!-- Font awesome style -->
   <link href="css/font-awesome.min.css" rel="stylesheet" />
 
-  <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   
-  <!-- Responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
-  <!-- Include jQuery and Isotope for filtering -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 </head>
@@ -50,13 +40,12 @@
     <%@ include file="navbar.jsp" %>
   </div>
 
-  <!-- food section -->
-
+  
   <section class="food_section layout_padding">
     <div class="container ">
         
 
-        <!-- Category Filter Menu -->
+        
         <ul class="filters_menu">
             <li class="active" data-filter="*">All</li>
             <li data-filter=".burger">Burger</li>
@@ -65,10 +54,10 @@
             <li data-filter=".fries">Fries</li>
         </ul>
 
-        <!-- Products Content Section -->
+        
         <div class="filters-content">
             <div class="row grid">
-                <!-- Loop through products and dynamically assign the category class -->
+              
                 <c:forEach var="product" items="${products}">
                     <div class="col-sm-6 col-lg-4 grid-item all ${product.category.toLowerCase()}">
                         <div class="box">
@@ -96,16 +85,16 @@
     </div>
   </section>
 
-  <!-- Isotope Filtering Script -->
+ 
   <script>
     $(document).ready(function(){
-        // Initialize Isotope
+     
         var $grid = $('.grid').isotope({
             itemSelector: '.grid-item',
             layoutMode: 'fitRows'
         });
 
-        // Filter items on button click
+       
         $('.filters_menu li').click(function() {
             $('.filters_menu li').removeClass('active');
             $(this).addClass('active');

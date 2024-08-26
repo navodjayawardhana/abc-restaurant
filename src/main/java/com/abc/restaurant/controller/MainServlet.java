@@ -1,37 +1,60 @@
 package com.abc.restaurant.controller;
 
-import com.abc.restaurant.model.User;
+import com.abc.restaurant.dao.BookingDAO;
+import com.abc.restaurant.dao.BranchDAO;
+import com.abc.restaurant.service.OrderServiceview;
+import com.abc.restaurant.dao.DatabaseConnection;
+import com.abc.restaurant.model.DailySales; // Assuming you have a DailySales model
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.util.List;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private OrderServiceview orderServiceview;
+    private BranchDAO branchDAO;
+    private BookingDAO bookingDAO;
+
+    @Override
+    public void init() {
+        orderServiceview = new OrderServiceview();
+        Connection connection = DatabaseConnection.getConnection();
+        branchDAO = new BranchDAO(connection);
+        bookingDAO = new BookingDAO();
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Get the session, but don't create a new one if it doesn't exist
+        try {
+            
+            BigDecimal totalEarnings = orderServiceview.calculateTotalEarnings();
+            request.setAttribute("totalEarnings", totalEarnings);
 
-        if (session != null) {
-            User user = (User) session.getAttribute("user");
+          
+            int pendingOrderCount = orderServiceview.getPendingOrderCount();
+            request.setAttribute("pendingOrderCount", pendingOrderCount);
 
-            if (user != null) {
-                String role = user.getRole();
+           
+            int totalBranchCount = branchDAO.getTotalBranch();
+            request.setAttribute("totalBranchCount", totalBranchCount); 
+            
+          
+            int pendingBookingCount = bookingDAO.getPendingBookingCount();
+            request.setAttribute("pendingBookingCount", pendingBookingCount);
 
-                // Check if the role is 'customer' and redirect them
-                if ("customer".equalsIgnoreCase(role)) {
-                    response.sendRedirect("index"); // Redirect customer to their dashboard
-                    return; // End execution
-                }
-            }
+           
+            List<DailySales> dailySales = orderServiceview.getDailySalesData();
+            request.setAttribute("dailySales", dailySales);
+
+        } catch (SQLException e) {
+            throw new ServletException("Failed to retrieve data", e);
         }
 
-        // If no user is logged in or the user is not a customer, forward to the main page
         request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 

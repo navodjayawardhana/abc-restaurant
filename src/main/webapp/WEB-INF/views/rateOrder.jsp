@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Rate Your Order</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -49,7 +48,7 @@
             <form action="rate" method="post">
                 <input type="hidden" name="orderId" value="${orderId}" />
 
-                <!-- Rating Stars -->
+              
                 <div class="rating-stars mb-4">
                     <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
                     <input type="radio" name="rating" id="star4" value="4"><label for="star4">&#9733;</label>
@@ -58,19 +57,19 @@
                     <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
                 </div>
 
-                <!-- Feedback Textarea -->
+                
                 <div class="form-group mb-4">
                     <label for="feedback" class="form-label">Your Feedback (Optional)</label>
                     <textarea class="form-control" name="feedback" id="feedback" rows="4" placeholder="Write your feedback here..."></textarea>
                 </div>
 
-                <!-- Submit Button -->
+                
                 <button type="submit" class="btn btn-warning btn-lg w-100">Submit Rating</button>
             </form>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

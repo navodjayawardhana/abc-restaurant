@@ -148,9 +148,9 @@ public class BranchServlet extends HttpServlet {
         response.sendRedirect("main");
     }
 
-    // Simple password encryption (for demonstration purposes only)
+  
     private String encryptPassword(String password) {
-        // Replace with a secure hashing algorithm in production
+      
         return Integer.toHexString(password.hashCode());
     }
 }

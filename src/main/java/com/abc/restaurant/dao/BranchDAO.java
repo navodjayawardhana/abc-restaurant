@@ -90,4 +90,16 @@ public class BranchDAO {
         }
         return branches;
     }
+
+    public int getTotalBranch() throws SQLException {
+        String sql = "SELECT COUNT(*) AS total FROM branches"; 
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            if (resultSet.next()) {
+                return resultSet.getInt("total"); 
+            }
+        }
+        return 0; 
+    }
+
 }

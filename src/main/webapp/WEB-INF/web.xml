@@ -148,6 +148,12 @@
   	<description></description>
   	<servlet-class>com.abc.restaurant.controller.ServiceServletadmin</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DashbordServlet</servlet-name>
+  	<display-name>DashbordServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.restaurant.controller.DashbordServlet</servlet-class>
+  </servlet>
  
   
   <servlet-mapping>
@@ -245,6 +251,10 @@
   <servlet-mapping>
   	<servlet-name>ServiceServletadmin</servlet-name>
   	<url-pattern>/ServiceServletadmin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DashbordServlet</servlet-name>
+  	<url-pattern>/DashbordServlet</url-pattern>
   </servlet-mapping>
  
   

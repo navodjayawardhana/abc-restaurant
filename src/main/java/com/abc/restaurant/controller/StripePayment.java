@@ -14,7 +14,7 @@ public class StripePayment extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Forward the request to the about.jsp page
+       
 		request.getRequestDispatcher("WEB-INF/views/stripePayment.jsp").forward(request, response);
     }
 

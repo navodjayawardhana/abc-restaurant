@@ -17,7 +17,7 @@ public class Promotion {
         this.imagePath = imagePath;
     }
 
-    // Getters and setters
+   
     public int getId() {
         return id;
     }

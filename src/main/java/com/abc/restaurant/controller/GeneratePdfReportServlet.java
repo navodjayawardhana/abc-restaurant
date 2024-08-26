@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +27,9 @@ public class GeneratePdfReportServlet extends HttpServlet {
     private BranchService branchService;
     private ProductService productService;
     private BookingService bookingService;
-    private UserService userService;  // Add UserService
+    private UserService userService; 
     private UserViewDao userViewDao;
+    private OrderServiceview orderServiceview;
 
     @Override
     public void init() {
@@ -35,21 +37,41 @@ public class GeneratePdfReportServlet extends HttpServlet {
         productService = new ProductService(new ProductDAO(DatabaseConnection.getConnection()));
         bookingService = new BookingService();
         userViewDao = new UserViewDao();
+        orderServiceview = new OrderServiceview();
         
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String reportType = request.getParameter("report");
+        String orderId = request.getParameter("orderId");
 
-        if ("branch".equalsIgnoreCase(reportType)) {
-            generateBranchReport(response);
-        } else if ("product".equalsIgnoreCase(reportType)) {
-            generateProductReport(response);
-        } else if ("booking".equalsIgnoreCase(reportType)) {
-            generateBookingReport(response);  // Generates booking report
-        }  else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid report type.");
+        if (reportType != null) {
+            switch (reportType) {
+                case "branch":
+                    generateBranchReport(response);
+                    break;
+                case "product":
+                    generateProductReport(response);
+                    break;
+                case "booking":
+                    generateBookingReport(response);
+                    break;
+                case "order":
+                    if (orderId != null) {
+                        generateOrderPdf(response, Integer.parseInt(orderId)); 
+                    } else {
+                        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Order ID is required.");
+                    }
+                    break;
+                case "incomeStatement":
+                    generateIncomeReport(response); 
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid report type.");
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Report type is required.");
         }
     }
 
@@ -141,7 +163,7 @@ public class GeneratePdfReportServlet extends HttpServlet {
         try {
             List<Booking> bookings = bookingService.getAllBookings();
 
-            // Separate the bookings based on their status
+         
             List<Booking> approvedBookings = bookings.stream()
                     .filter(booking -> "Approved".equalsIgnoreCase(booking.getStatus()))
                     .collect(Collectors.toList());
@@ -244,4 +266,170 @@ public class GeneratePdfReportServlet extends HttpServlet {
                 (document.right() - document.left()) / 2 + document.leftMargin(),
                 document.bottom() - 10, 0);
     }
+    
+    
+ 
+    private void generateOrderPdf(HttpServletResponse response, int orderId) throws ServletException, IOException {
+        try {
+           
+            Order order = orderServiceview.getOrder(orderId);
+            List<OrderItem> orderItems = orderServiceview.getOrderItems(orderId);
+
+          
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=order_" + orderId + "_report.pdf");
+
+          
+            Document document = new Document();
+            OutputStream out = response.getOutputStream();
+            PdfWriter writer = PdfWriter.getInstance(document, out);
+            document.open();
+
+         
+            addOrderDetailsHeader(document, "Order Details Report", order);
+            addOrderDetails(document, order);
+
+          
+            addOrderItemsTable(document, orderItems);
+
+           
+            addOrderTotal(document, orderItems);
+
+            document.close();
+            out.close();
+        } catch (SQLException | DocumentException e) {
+            throw new ServletException("Cannot generate order PDF report", e);
+        }
+    }
+
+  
+    private void addOrderDetailsHeader(Document document, String title, Order order) throws DocumentException {
+        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24, BaseColor.BLACK);
+        Paragraph header = new Paragraph(title, titleFont);
+        header.setAlignment(Element.ALIGN_CENTER);
+        document.add(header);
+        document.add(Chunk.NEWLINE);
+    }
+
+   
+    private void addOrderDetails(Document document, Order order) throws DocumentException {
+        Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
+        document.add(new Paragraph("Order ID: " + order.getId(), font));
+        document.add(new Paragraph("Customer Name: " + order.getName(), font));
+        document.add(new Paragraph("Customer Email: " + order.getEmail(), font));
+        document.add(new Paragraph("Address: " + order.getAddress(), font));
+        document.add(new Paragraph("Order Type: " + order.getOrderType(), font));
+        document.add(new Paragraph("Payment Method: " + order.getPaymentMethod(), font));
+        document.add(new Paragraph("Order Status: " + order.getStatus(), font));
+        document.add(new Paragraph("Order Date: " + order.getCreatedAt().toString(), font));
+        document.add(Chunk.NEWLINE);
+    }
+
+   
+    private void addOrderItemsTable(Document document, List<OrderItem> orderItems) throws DocumentException {
+        PdfPTable table = new PdfPTable(3); 
+        table.setWidthPercentage(100);
+        table.setSpacingBefore(10f);
+
+        PdfPCell cell = new PdfPCell(new Phrase("Product Name"));
+        table.addCell(cell);
+        cell = new PdfPCell(new Phrase("Quantity"));
+        table.addCell(cell);
+        cell = new PdfPCell(new Phrase("Price"));
+        table.addCell(cell);
+
+        for (OrderItem item : orderItems) {
+            table.addCell(item.getProductName());
+            table.addCell(String.valueOf(item.getQuantity()));
+            table.addCell(item.getPrice().toString());
+        }
+
+        document.add(table);
+    }
+
+  
+    private void addOrderTotal(Document document, List<OrderItem> orderItems) throws DocumentException {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
+        for (OrderItem item : orderItems) {
+            totalPrice = totalPrice.add(item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+        }
+
+        Font totalFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+        Paragraph total = new Paragraph("Total Price: " + totalPrice.toString(), totalFont);
+        total.setAlignment(Element.ALIGN_RIGHT);
+        document.add(total);
+    }
+
+    private void generateIncomeReport(HttpServletResponse response) throws ServletException, IOException {
+        try {
+           
+            List<Order> orders = orderServiceview.getAllOrdersWithTotalPrice();
+
+            
+            BigDecimal totalRevenue = BigDecimal.ZERO;
+
+          
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=income_report.pdf");
+
+            
+            Document document = new Document();
+            OutputStream out = response.getOutputStream();
+            PdfWriter writer = PdfWriter.getInstance(document, out);
+            document.open();
+
+           
+            addHeader(document, writer, "Income Report");
+
+           
+            PdfPTable table = new PdfPTable(5);  
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+
+           
+            PdfPCell cell = new PdfPCell(new Phrase("Order ID"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Customer Name"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Date"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Quantity"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Total Price"));
+            table.addCell(cell);
+
+          
+            for (Order order : orders) {
+                BigDecimal orderTotal = order.getTotalPrice().multiply(new BigDecimal(order.getTotalQuantity())); 
+
+                table.addCell(String.valueOf(order.getId()));
+                table.addCell(order.getName());
+                table.addCell(order.getCreatedAt().toString());
+                table.addCell(String.valueOf(order.getTotalQuantity()));  
+                table.addCell(orderTotal.toString());  
+
+            
+                totalRevenue = totalRevenue.add(orderTotal);
+            }
+
+            document.add(table);
+
+       
+            Font totalFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+            Paragraph total = new Paragraph("Total Revenue: LKR" + totalRevenue.toString(), totalFont);
+            total.setAlignment(Element.ALIGN_RIGHT);
+            document.add(total);
+
+            document.close();
+            out.close();
+        } catch (SQLException | DocumentException e) {
+            throw new ServletException("Cannot generate income report PDF", e);
+        }
+    }
+
+
+
+
+    
 }

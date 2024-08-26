@@ -24,7 +24,7 @@ public class AdminBookingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("bookings", bookingService.getAllBookings());
-            // Handle message display
+        
             HttpSession session = request.getSession();
             String message = (String) session.getAttribute("message");
             String messageType = (String) session.getAttribute("messageType");
@@ -49,11 +49,11 @@ public class AdminBookingServlet extends HttpServlet {
 
         try {
             if ("approve".equals(action)) {
-                bookingService.approveBooking(id);  // This sends an approval email
+                bookingService.approveBooking(id);  
                 session.setAttribute("message", "Booking approved successfully!");
                 session.setAttribute("messageType", "success");
             } else if ("reject".equals(action)) {
-                bookingService.rejectBooking(id);  // This sends a rejection email
+                bookingService.rejectBooking(id);  
                 session.setAttribute("message", "Booking rejected successfully!");
                 session.setAttribute("messageType", "success");
             } else {

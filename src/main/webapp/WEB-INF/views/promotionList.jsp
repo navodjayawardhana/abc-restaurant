@@ -16,11 +16,12 @@
             justify-content: center;
         }
 
-        /* Initially hide extra promotions */
+     
         .extra-promotion {
             display: none;
         }
     </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Display only the first two promotions -->
+                   
                     <c:set var="promotionCount" value="0" />
                     <c:forEach var="promotion" items="${promotions}">
                         <tr class="<c:if test='${promotionCount >= 2}'>extra-promotion</c:if>">
@@ -69,12 +70,12 @@
             </table>
         </div>
 
-        <!-- Show More Button -->
+       
         <div class="text-center">
             <button class="btn btn-primary" id="showMoreButton">Show More</button>
         </div>
 
-        <!-- Add Promotion Modal -->
+      
         <div class="modal fade" id="addPromotionModal" tabindex="-1" aria-labelledby="addPromotionModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -161,20 +162,20 @@
             </div>
         </div>
 
-        <!-- jQuery & Bootstrap JS -->
+        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
         <script>
             $(document).ready(function () {
-                // Show more promotions when the button is clicked
+                
                 $('#showMoreButton').click(function () {
-                    $('.extra-promotion').show(); // Show hidden promotions
-                    $(this).hide(); // Hide the 'Show More' button
+                    $('.extra-promotion').show(); 
+                    $(this).hide(); 
                 });
 
-                // Edit button click event
+                
                 $('.edit-btn').click(function () {
                     var promotionId = $(this).data('id');
                     var promotionTitle = $(this).data('title');
@@ -195,7 +196,7 @@
                     }
                 });
 
-                // Delete button click event
+              
                 $('.delete-btn').click(function () {
                     var promotionId = $(this).data('id');
                     $('#confirmDeleteButton').data('id', promotionId);

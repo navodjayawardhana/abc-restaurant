@@ -33,9 +33,7 @@
             <a href="" class="footer-logo">
               ABC-Restaurant
             </a>
-            <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-            </p>
+            
             <div class="footer_social">
               <a href="">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -69,10 +67,10 @@
       </div>
       <div class="footer-info">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br><br>
-          &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+        
+          <a href="https://html.design/"></a><br><br>
+          &copy; <span id="displayYear"></span> ABC-Restaurant
+         
         </p>
        </div>
     </div>

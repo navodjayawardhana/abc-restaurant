@@ -20,24 +20,31 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        HttpSession session = request.getSession();
+
+       
         if (userService.validateUser(email, password)) {
-            HttpSession session = request.getSession();
             User user = userService.getUserByEmail(email);
-
             session.setAttribute("user", user);
+            session.removeAttribute("message"); 
+            session.removeAttribute("messageType");
 
+           
             String role = user.getRole();
-            
-            if ("customer".equals(role)) {
-
+            if ("customer".equalsIgnoreCase(role)) {
                 response.sendRedirect("checkout");
-            } else {
-
+            } else if ("admin".equalsIgnoreCase(role) || "staff".equalsIgnoreCase(role)) {
                 response.sendRedirect("main");
+            } else {
+                response.sendRedirect("login.jsp");
             }
         } else {
+            
+            session.setAttribute("message", "Invalid email or password. Please try again.");
+            session.setAttribute("messageType", "danger");
 
-            response.sendRedirect("loginFail.jsp");
+           
+            response.sendRedirect("login.jsp");
         }
     }
 }

@@ -6,13 +6,11 @@
         <p>Your cart is empty.</p>
     </c:if>
 
-    <!-- Initialize the totalPrice variable -->
     <c:set var="totalPrice" value="0" />
 
     <c:forEach var="item" items="${cart}">
-        <!-- Calculate total for each item -->
+        
         <c:set var="itemTotal" value="${item.product.price * item.quantity}" />
-        <!-- Add item total to totalPrice -->
         <c:set var="totalPrice" value="${totalPrice + itemTotal}" />
 
         <div class="cart-item d-flex justify-content-between align-items-center">
@@ -32,7 +30,7 @@
                 </form>
             </div>
             <div>
-                <h6 class="item-total">Total: LKR ${itemTotal}</h6> <!-- Display total for each item -->
+                <h6 class="item-total">Total: LKR ${itemTotal}</h6> 
             </div>
             <form action="cart" method="get">
                 <input type="hidden" name="productId" value="${item.product.id}">
@@ -42,7 +40,7 @@
         <hr>
     </c:forEach>
 
-    <!-- Display the calculated total price for all items -->
+   
     <c:if test="${not empty cart}">
         <h4>Total Price: LKR ${totalPrice}</h4>
         <a href="checkout" class="btn btn-success">Proceed to Checkout</a>

@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Success</title>
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <style>
     body {
@@ -32,7 +31,7 @@
       <div class="col-md-6">
         <div class="success-message">
           <div class="success-icon">
-            <i class="bi bi-check-circle"></i> <!-- Use bootstrap icon -->
+            <i class="bi bi-check-circle"></i>
           </div>
           <h1 class="display-4">Success!</h1>
           <p class="lead">Your operation was completed successfully.</p>
@@ -42,14 +41,14 @@
     </div>
   </div>
 
-  <!-- Redirect to index after 2 seconds -->
+ 
   <script>
     setTimeout(function() {
       window.location.href = 'index'; // Adjust the path as needed
     }, 2000);
   </script>
 
-  <!-- Bootstrap JS and dependencies -->
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

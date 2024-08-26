@@ -25,10 +25,10 @@ public class OrderDAO {
             stmt.setDouble(7, totalPrice);
             stmt.executeUpdate();
 
-            // Retrieve the generated order ID
+           
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                return rs.getInt(1);  // Return the generated order ID
+                return rs.getInt(1);  
             }
         }
         return -1;

@@ -81,7 +81,7 @@ public class UserViewDao {
         }
     }
 
-    // Helper method to map ResultSet to User object
+    
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getInt("id"));

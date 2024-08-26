@@ -1,9 +1,10 @@
 package com.abc.restaurant.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Order {
-    private int id;  // Use 'id' instead of 'orderId'
+    private int id;  
     private String name;
     private String email;
     private String address;
@@ -12,9 +13,11 @@ public class Order {
     private String paymentMethod;
     private String status;
     private Timestamp createdAt;
+    private BigDecimal totalPrice;
+    private int totalQuantity;
 
     public Order(int id, String name, String email, String address, String branch, String orderType, String paymentMethod, String status, Timestamp createdAt) {
-        this.id = id;  // 'id' corresponds to the 'id' field in the database
+        this.id = id;  
         this.name = name;
         this.email = email;
         this.address = address;
@@ -25,7 +28,14 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    // Getter and setter for 'id'
+    public Order(int id, String name, Timestamp createdAt, BigDecimal totalPrice, int totalQuantity) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.totalPrice = totalPrice;
+        this.totalQuantity = totalQuantity;  
+    }
+   
     public int getId() {
         return id;
     }
@@ -34,7 +44,7 @@ public class Order {
         this.id = id;
     }
 
-    // Other getters and setters
+   
     public String getName() {
         return name;
     }
@@ -98,4 +108,21 @@ public class Order {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+	
 }

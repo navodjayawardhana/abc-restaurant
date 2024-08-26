@@ -19,7 +19,7 @@ public class RatingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Display rating form
+        
         String orderId = request.getParameter("orderId");
         request.setAttribute("orderId", orderId);
         request.getRequestDispatcher("/WEB-INF/views/rateOrder.jsp").forward(request, response);
@@ -34,7 +34,7 @@ public class RatingServlet extends HttpServlet {
         Rating rating = new Rating(orderId, ratingValue, feedback);
         ratingService.saveRating(rating);
 
-        // Redirect to thank you page
+     
         response.sendRedirect("index");
     }
 }

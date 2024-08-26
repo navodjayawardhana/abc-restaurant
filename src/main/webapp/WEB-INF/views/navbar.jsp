@@ -41,12 +41,12 @@
                     <a href="login.jsp" class="user_link">
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
-                    <!-- Cart Icon with Offcanvas Trigger -->
+                  
                    <a class="cart_link" href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
 					    <i class="fa fa-shopping-cart" style="color: white;"></i>
 					    <span id="cart-item-count" class="badge bg-warning">
-					        <c:out value="${cart.size()}" /> <!-- Display the current number of items in the cart -->
-					    </span> <!-- Dynamic cart item count -->
+					        <c:out value="${cart.size()}" /> 
+					    </span> 
 					</a>
                 </div>
             </div>
@@ -54,8 +54,7 @@
     </div>
 </header>
 
-<!-- Offcanvas for Cart -->
-<!-- Offcanvas for Cart -->
+
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="cartOffcanvasLabel">Shopping Cart</h5>
@@ -120,7 +119,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         const cartItemCountElement = document.querySelector("#cart-item-count");
 
-        // Function to update the cart item count dynamically
+      
         function updateCartItemCount() {
             fetch('cart?action=getCartCount')
                 .then(response => response.json())
@@ -130,11 +129,10 @@
                 .catch(error => console.error("Error fetching cart count:", error));
         }
 
-        // Update the cart item count when the page loads
+       
         updateCartItemCount();
 
-        // Example: If you add/remove items in the cart, call this function again to refresh the count
-        // updateCartItemCount();
+        
     });
 </script>
 

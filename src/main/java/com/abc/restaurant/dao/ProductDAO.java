@@ -15,7 +15,7 @@ public class ProductDAO {
         this.connection = connection;
     }
 
-    // Create product with image path
+  
     public void createProduct(Product product) throws SQLException {
         String sql = "INSERT INTO products (name, description, price, available, image_path, category) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -30,7 +30,7 @@ public class ProductDAO {
     }
 
 
-    // Retrieve product by ID
+    
     public Product getProductById(int id) throws SQLException {
         String sql = "SELECT * FROM products WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -53,7 +53,7 @@ public class ProductDAO {
     }
 
 
-    // Update product with image path
+    
     public void updateProduct(Product product) throws SQLException {
         String sql = "UPDATE products SET name = ?, description = ?, price = ?, available = ?, image_path = ?, category = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -69,7 +69,7 @@ public class ProductDAO {
     }
 
 
-    // Delete product
+    
     public void deleteProduct(int id) throws SQLException {
         String sql = "DELETE FROM products WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -78,7 +78,7 @@ public class ProductDAO {
         }
     }
 
-    // Retrieve all products
+    
     public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products";

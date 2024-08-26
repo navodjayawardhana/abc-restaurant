@@ -80,8 +80,7 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
         boolean available = request.getParameter("available") != null;
-        String category = request.getParameter("category");  // Retrieve category from the form
-
+        String category = request.getParameter("category");  
         Part filePart = request.getPart("image");
         String fileName = getFileName(filePart);
         String imagePath = saveImage(filePart, fileName);
